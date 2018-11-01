@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xupt.reward.project.user.mapper.TeacherMapper">
+	<resultMap type="Teacher" id="TeacherResult">
+		<id     property="colId"       column="col_id"      />
+		<result property="colCode"       column="col_code"      />
+		<result property="colTitle"    column="col_title"   />
+		<result property="colSchool"     column="col_school"    />
+		<result property="colDepartment"        column="col_department"        />
+		<result property="colSubdepartment"  column="col_subdepartment"  />
+		<result property="colDuty"          column="col_duty"          />
+		<result property="colStarttime"       column="col_starttime"       />
+		<result property="colEndtime"     column="col_endtime"     />
+		<result property="colJobtype"         column="col_jobtype"         />
+		<result property="colJobname"     column="col_jobname"    />
+		<result property="colJobclass"       column="col_jobclass"       />
+		<result property="colJobdb"    column="col_jobdb"   />
+		<result property="colIsfdy"      column="col_isfdy"     />
+		<result property="colNote"    column="col_note"   />
+	</resultMap>
+	
+	<insert id="insertTeacher">
+		INSERT INTO base_teacher(
+			col_code,col_title,col_school,col_department,col_subdepartment,col_duty,col_starttime,col_endtime,col_jobtype,col_jobname,
+			col_jobclass,col_jobdb,col_isfdy,col_note
+		) values (
+			#{colCode},#{colTitle},#{colSchool},#{colDepartment},#{colSubdepartment},#{colDuty},#{colStarttime},#{colEndtime},#{colJobtype},
+			#{colJobname},#{colJobclass},#{colJobdb},#{colIsfdy},#{colNote}
+		)
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

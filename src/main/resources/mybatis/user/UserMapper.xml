@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xupt.reward.project.user.mapper.UserMapper">
+	<resultMap type="User" id="UserResult">
+		<id     property="colId"       column="col_id"      />
+		<result property="colCode"       column="col_code"      />
+		<result property="colName"    column="col_name"   />
+		<result property="colPasswd"     column="col_passwd"    />
+		<result property="colSex"        column="col_sex"        />
+		<result property="colEducation"  column="col_education"  />
+		<result property="colEntryDate"          column="col_entry_date"          />
+		<result property="colLeavetime"       column="col_leavetime"       />
+		<result property="colEmail"     column="col_email"     />
+		<result property="colTelephone"         column="col_telephone"         />
+		<result property="colRole"     column="col_role"    />
+		<result property="colRank"       column="col_rank"       />
+		<result property="colTemp"    column="col_temp"   />
+		<result property="colTime"      column="col_time"     />
+		<result property="colNote"    column="col_note"   />
+		<result property="colPinyin"     column="col_pinyin"    />
+		<result property="colPinyinf"   column="col_pinyinf"  />
+		<result property="colImg"     column="col_img"    />
+		<result property="colViewRole"     column="col_view_role"    />
+		<result property="colPasstime"     column="col_passtime"    />
+	</resultMap>
+	
+	<select id="selectUserByColCode" resultMap="UserResult">
+		select  *
+		from base_users u
+		where u.col_code = #{colCode} and u.col_passwd = #{colPasswd}
+	</select>
+
+	<select id="selectColRole" parameterType="String" resultType="Long">
+		select col_role  from base_users where col_code=#{colCode}
+	</select>
+	
+	<select id="findAll" resultMap="UserResult">
+		select col_name from base_users
+	</select>
+	
+	<select id="checkColCode" parameterType="String" resultType="int">
+		select count(*) from base_users where col_code=#{colCode}
+	</select>
+	
+	<insert id="insertUser" >
+		INSERT INTO base_users(
+		col_code,col_name,col_passwd,col_sex,col_education,col_entry_date,col_leavetime,col_email,col_telephone,col_role,col_rank,
+		col_temp,col_time,col_note,col_pinyin,col_pinyinf,col_img,col_view_role,col_passtime
+		) VALUES (
+		#{colCode},#{colName},#{colPasswd},#{colSex},#{colEducation},#{colEntryDate},#{colLeavetime},#{colEmail},
+		#{colTelephone},#{colRole},#{colRank},#{colTemp},#{colTime},#{colNote},#{colPinyin},#{colPinyinf},#{colImg},
+		#{colViewRole},#{colPasstime}
+		)
+	</insert>
+	
+	<!--<select id="selectUserByPhoneNumber" parameterType="String" resultMap="UserResult">-->
+		<!--select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email, u.phonenumber, u.sex, u.avatar, u.password, u.salt, u.status, u.refuse_des, u.login_ip, u.login_date, u.create_time,-->
+       		    <!--d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status-->
+		<!--from sys_user u-->
+			 <!--left join sys_dept d on u.dept_id = d.dept_id-->
+			 <!--left join sys_user_role ur on u.user_id = ur.user_id-->
+		<!--where u.phonenumber = #{phonenumber}-->
+	<!--</select>-->
+	<!---->
+	<!--<select id="selectUserByEmail" parameterType="String" resultMap="UserResult">-->
+		<!--select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email, u.phonenumber, u.sex, u.avatar, u.password, u.salt, u.status, u.refuse_des, u.login_ip, u.login_date, u.create_time,-->
+       		    <!--d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status-->
+		<!--from sys_user u-->
+			 <!--left join sys_dept d on u.dept_id = d.dept_id-->
+			 <!--left join sys_user_role ur on u.user_id = ur.user_id-->
+		<!--where u.email = #{email}-->
+	<!--</select>-->
+	<!---->
+	<!--<select id="checkLoginNameUnique" parameterType="String" resultType="int">-->
+		<!--select count(*) from sys_user where login_name=#{loginName}-->
+	<!--</select>-->
+	<!---->
+	<!--<select id="checkPhoneUnique" parameterType="String" resultMap="UserResult">-->
+		<!--select user_id, phonenumber from sys_user where phonenumber=#{phonenumber}-->
+	<!--</select>-->
+	<!---->
+	<!--<select id="checkEmailUnique" parameterType="String" resultMap="UserResult">-->
+		<!--select user_id, email from sys_user where email=#{email}-->
+	<!--</select>-->
+	<!---->
+	<!--<select id="selectUserById" parameterType="Long" resultMap="UserResult">-->
+		<!--select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email, u.phonenumber, u.sex, u.avatar, u.password, u.salt, u.status, u.refuse_des, u.login_ip, u.login_date, u.create_time,-->
+       		    <!--d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status-->
+		<!--from sys_user u-->
+			 <!--left join sys_dept d on u.dept_id = d.dept_id-->
+			 <!--left join sys_user_role ur on u.user_id = ur.user_id-->
+		<!--where u.user_id = #{userId}-->
+	<!--</select>-->
+	<!---->
+	<!--<delete id="deleteUserById" parameterType="Long">-->
+ 		<!--delete from sys_user where user_id = #{userId}-->
+ 	<!--</delete>-->
+ 	<!---->
+ 	<!--<delete id="batchDeleteUser" parameterType="Long">-->
+ 		<!--delete from sys_user where user_id in-->
+ 		<!--<foreach collection="array" item="userId" open="(" separator="," close=")">-->
+ 			<!--#{userId}-->
+        <!--</foreach> -->
+ 	<!--</delete>-->
+ 	<!---->
+ 	<!--<update id="updateUser" parameterType="User">-->
+ 		<!--update sys_user-->
+ 		<!--<set>-->
+ 			<!--<if test="deptId != null and deptId != 0">dept_id = #{deptId},</if>-->
+ 			<!--<if test="loginName != null and loginName != ''">login_name = #{loginName},</if>-->
+ 			<!--<if test="userName != null and userName != ''">user_name = #{userName},</if>-->
+ 			<!--<if test="email != null and email != ''">email = #{email},</if>-->
+ 			<!--<if test="phonenumber != null and phonenumber != ''">phonenumber = #{phonenumber},</if>-->
+ 			<!--<if test="sex != null and sex != ''">sex = #{sex},</if>-->
+ 			<!--<if test="avatar != null and avatar != ''">avatar = #{avatar},</if>-->
+ 			<!--<if test="password != null and password != ''">password = #{password},</if>-->
+ 			<!--<if test="salt != null and salt != ''">salt = #{salt},</if>-->
+ 			<!--<if test="status !=null">status = #{status},</if>-->
+ 			<!--<if test="refuseDes != null and refuseDes != ''">refuse_des = #{refuseDes},</if>-->
+ 			<!--<if test="loginIp != null and loginIp != ''">login_ip = #{loginIp},</if>-->
+ 			<!--<if test="loginDate != null">login_date = #{loginDate},</if>-->
+ 			<!--<if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>-->
+ 			<!--update_time = sysdate()-->
+ 		<!--</set>-->
+ 		<!--where 1=1-->
+ 		<!--<if test="userId != null and userId  != ''">and user_id = #{userId}</if>-->
+	<!--</update>-->
+ 	<!---->
+ 	<!--<insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="userId">-->
+ 		<!--insert into sys_user(-->
+ 			<!--<if test="userId != null and userId != 0">user_id,</if>-->
+ 			<!--<if test="deptId != null and deptId != 0">dept_id,</if>-->
+ 			<!--<if test="loginName != null and loginName != ''">login_name,</if>-->
+ 			<!--<if test="userName != null and userName != ''">user_name,</if>-->
+ 			<!--<if test="email != null and email != ''">email,</if>-->
+ 			<!--<if test="phonenumber != null and phonenumber != ''">phonenumber,</if>-->
+ 			<!--<if test="sex != null and sex != ''">sex,</if>-->
+ 			<!--<if test="password != null and password != ''">password,</if>-->
+ 			<!--<if test="salt != null and salt != ''">salt,</if>-->
+ 			<!--<if test="status !=null and status != ''">status,</if>-->
+ 			<!--<if test="refuseDes != null and refuseDes != ''">refuse_des,</if>-->
+ 			<!--<if test="createBy != null and createBy != ''">create_by,</if>-->
+ 			<!--create_time-->
+ 		<!--)values(-->
+ 			<!--<if test="userId != null and userId != ''">#{userId},</if>-->
+ 			<!--<if test="deptId != null and deptId != ''">#{deptId},</if>-->
+ 			<!--<if test="loginName != null and loginName != ''">#{loginName},</if>-->
+ 			<!--<if test="userName != null and userName != ''">#{userName},</if>-->
+ 			<!--<if test="email != null and email != ''">#{email},</if>-->
+ 			<!--<if test="phonenumber != null and phonenumber != ''">#{phonenumber},</if>-->
+ 			<!--<if test="sex != null and sex != ''">#{sex},</if>-->
+ 			<!--<if test="password != null and password != ''">#{password},</if>-->
+ 			<!--<if test="salt != null and salt != ''">#{salt},</if>-->
+ 			<!--<if test="status !=null and status != ''">#{status},</if>-->
+ 			<!--<if test="refuseDes != null and refuseDes != ''">#{refuseDes},</if>-->
+ 			<!--<if test="createBy != null and createBy != ''">#{createBy},</if>-->
+ 			<!--sysdate()-->
+ 		<!--)-->
+	<!--</insert>-->
+	
+</mapper> 
