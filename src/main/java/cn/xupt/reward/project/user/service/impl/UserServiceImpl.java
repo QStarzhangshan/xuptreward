@@ -36,8 +36,8 @@ public class UserServiceImpl implements UserService{
     }
 
 	@Override
-	public List<User> findAll() {
-		return userMapper.findAll();
+	public List<User> findAll(String colName,String colSchool) {
+		return userMapper.findAll(colName,colSchool);
 	}
 
 	@Override

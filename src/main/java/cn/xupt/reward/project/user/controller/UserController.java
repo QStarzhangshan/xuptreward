@@ -1,7 +1,9 @@
 package cn.xupt.reward.project.user.controller;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.xupt.reward.common.constant.UserConstants;
 import cn.xupt.reward.framework.web.controller.BaseController;
 import cn.xupt.reward.framework.web.domain.Message;
+import cn.xupt.reward.project.school.domain.BaseSubSchool;
 import cn.xupt.reward.project.user.domain.Permission;
 import cn.xupt.reward.project.user.domain.Teacher;
 import cn.xupt.reward.project.user.domain.User;
@@ -28,6 +31,7 @@ import cn.xupt.reward.project.user.service.UserService;
 import cn.xupt.reward.util.Md5Util;
 
 @Controller
+@RequestMapping("/user")
 public class UserController extends BaseController{
 
 	@Autowired
@@ -37,13 +41,23 @@ public class UserController extends BaseController{
 	@Autowired
 	private PermissionService permissionService;
 	
-	
+	/**
+	 * 用户管理
+	 * @param baseSubSchool
+	 * @param httpServletRequest
+	 * @param httpServletResponse
+	 * @return
+	 */
 	@RequiresPermissions("system:user:management")
-	@RequestMapping(value="findAll")
+	@RequestMapping(value="/findAll")
 	@ResponseBody
-	public List<User> userList() {
-		List<User> users = userService.findAll();
-		return users;
+	public Map<String,Object> userList(@RequestBody BaseSubSchool baseSubSchool,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		List<Teacher> teachers = teacherSerivce.findAll(baseSubSchool.getColName(), baseSubSchool.getColSchool());
+		List<User> users = userService.findAll(baseSubSchool.getColName(), baseSubSchool.getColSchool());
+		map.put("teachers", teachers);
+		map.put("users", users);
+		return map;
 		
 	}
 	/**

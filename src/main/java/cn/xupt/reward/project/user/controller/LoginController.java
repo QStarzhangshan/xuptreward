@@ -9,6 +9,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -17,16 +18,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 
 import cn.xupt.reward.common.utils.StringUtils;
 import cn.xupt.reward.framework.web.controller.BaseController;
 import cn.xupt.reward.framework.web.domain.Message;
+import cn.xupt.reward.project.user.domain.User;
 import cn.xupt.reward.project.user.service.UserService;
 
 
@@ -43,25 +49,23 @@ public class LoginController extends BaseController{
     @PostMapping(value="/getlogin")
     @ResponseBody
     public Message login(
-            @RequestParam(required = false) String colCode,
-            @RequestParam(required = false) String colPasswd,
-            HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse
+    		@RequestBody User user,
+    		@RequestBody String v,
+    		HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse
     ) {
-		 String captchaId = (String) httpServletRequest.getSession().getAttribute("vrifyCode");  
-		 String parameter = httpServletRequest.getParameter("vrifyCode");
-		 System.out.println("Session  vrifyCode "+captchaId+" form vrifyCode "+parameter);
-    	UsernamePasswordToken token = new UsernamePasswordToken(colCode, colPasswd);
-    	httpServletRequest.getSession().setAttribute("colCode", colCode);
-    	httpServletRequest.getSession().setAttribute("colPasswd", colPasswd);
-       // System.out.println(colCode);
-       //System.out.println(colPasswd);
-       //System.out.println((String)httpServletRequest.getSession().getAttribute("vrifyCode"));
-       //System.out.println(httpServletRequest.getParameter("vrifyCode"));
-       // System.out.println(httpServletRequest.getRequestedSessionId());
+    	String captchaId = (String) httpServletRequest.getSession().getAttribute("vrifyCode");  
+    	//v是json数组，拆分json，取属性名，拿到value
+    	JSONObject obj = JSONObject.parseObject(v);
+    	String vrifyCode = obj.getString("vrifyCode");
+    	System.out.println("Session  vrifyCode "+captchaId+" form vrifyCode "+vrifyCode);
+    	UsernamePasswordToken token = new UsernamePasswordToken(user.getColCode(), user.getColPasswd());
+    	httpServletRequest.getSession().setAttribute("colCode", user.getColCode());
+    	httpServletRequest.getSession().setAttribute("colPasswd", user.getColPasswd());
+        System.out.println(httpServletRequest.getRequestedSessionId());
         Subject subject = SecurityUtils.getSubject();
-        if(!parameter.equals(captchaId)) {
+        if(!vrifyCode.equals(captchaId)) {
         	return Message.error(2, "验证码错误");
-        }else {
+        }else{
         try
         {
         	subject.login(token);

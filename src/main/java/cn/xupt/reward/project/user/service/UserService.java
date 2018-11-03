@@ -10,9 +10,10 @@ public interface UserService {
 
     public Long selectColRole(String colCode);
 
-	public List<User> findAll();
+	public List<User> findAll(String colName, String colDepartment);
 
 	public String checkColCode(String colCode);
 
 	public void insertUser(User user);
+
 }

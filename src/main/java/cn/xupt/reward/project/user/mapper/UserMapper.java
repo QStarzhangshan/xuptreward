@@ -17,7 +17,7 @@ public interface UserMapper {
 
     public Long selectColRole(String colCode);
 
-	public List<User> findAll();
+	public List<User> findAll(@Param("colName") String colName, @Param("colSchool") String colSchool);
 
 	public int checkColCode(String colCode);
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xupt.reward.project.school.mapper.SchoolMapper">
+	<resultMap type="BaseSchool" id="BaseSchoolResult">
+		<id     property="colId"       column="col_id"      />
+		<result property="colName"       column="col_name"      />
+		<result property="colType"    column="col_type"   />
+		<result property="colIsteach"    column="col_isteach"   />
+		<result property="colNote"    column="col_note"   />
+		
+	</resultMap>
+	
+	<select id="findAll" resultMap="BaseSchoolResult">
+		select * from base_school
+	</select>
+	
+	<select id="findOne" parameterType="String" resultMap="BaseSchoolResult">
+		select * from base_school where col_name=#{colSchool}
+	</select>
+	
+</mapper>

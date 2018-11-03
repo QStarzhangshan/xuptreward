@@ -1,5 +1,7 @@
 package cn.xupt.reward.project.user.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,16 @@ public class TeacherServiceImpl implements TeacherService{
 	@Override
 	public void insertTeacher(Teacher teacher) {
 		teacherMapper.insertTeacher(teacher);
+	}
+
+	@Override
+	public List<Teacher> findAll(String colName, String colSchool) {
+		return teacherMapper.findAll(colName,colSchool);
+	}
+
+	@Override
+	public Teacher findByCode(String colCode) {
+		return teacherMapper.findByCode(colCode);
 	}
 
 }

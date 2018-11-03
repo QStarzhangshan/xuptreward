@@ -31,6 +31,20 @@
 		)
 	</insert>
 	
+	<select id="findAll" parameterType="String" resultMap="TeacherResult">
+		select * 
+		from base_teacher t
+		left join base_users u on u.col_code = t.col_code
+		where <if test="colSchool != null and colSchool != ''">t.col_school=#{colSchool}</if>
+		and <if test="colName != null and colName != ''">t.col_department=#{colName}</if>
+		group by u.col_code
+	</select>
+	
+	<select id="findByCode" parameterType="String" resultMap="TeacherResult">
+		select * 
+		from base_teacher
+		where col_code=#{colCode}
+	</select>
 	
 	
 	
