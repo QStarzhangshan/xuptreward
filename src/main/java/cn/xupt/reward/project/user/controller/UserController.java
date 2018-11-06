@@ -85,8 +85,8 @@ public class UserController extends BaseController{
 	@RequestMapping(value="/findAll")
 	public Map<String,Object> userList(@RequestBody BaseSubSchool baseSubSchool,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
 		Map<String,Object> map = new HashMap<String,Object>();
-		List<Teacher> teachers = teacherSerivce.findAll(baseSubSchool.getColName(), baseSubSchool.getColSchool());
-		List<User> users = userService.findAll(baseSubSchool.getColName(), baseSubSchool.getColSchool());
+		List<Teacher> teachers = teacherSerivce.findAll(baseSubSchool.getColDname(), baseSubSchool.getColSchool());
+		List<User> users = userService.findAll(baseSubSchool.getColDname(), baseSubSchool.getColSchool());
 		map.put("teachers", teachers);
 		map.put("users", users);
 		return map;	

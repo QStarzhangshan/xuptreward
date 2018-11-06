@@ -62,7 +62,7 @@ public class SchoolController {
 	 */
 	@RequestMapping(value="AllSubSchool",method=RequestMethod.POST)
 	public Map<String,Object> findDepartment(@RequestBody BaseSchool baseSchool,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse){
-		List<BaseSubSchool> subSchools = subSchoolService.findAllBySchool(baseSchool.getColName());
+		List<BaseSubSchool> subSchools = subSchoolService.findAllBySchool(baseSchool.getColSname());
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("subSchools", subSchools);
 		return map;

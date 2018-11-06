@@ -2,7 +2,7 @@ package cn.xupt.reward.project.school.domain;
 
 public class BaseSchool {
 	private long colId;
-	private String colName;
+	private String colSname;
 	private String colType;
 	private String colIsteach;
 	private String colNote;
@@ -12,11 +12,11 @@ public class BaseSchool {
 	public void setColId(long colId) {
 		this.colId = colId;
 	}
-	public String getColName() {
-		return colName;
+	public String getColSname() {
+		return colSname;
 	}
-	public void setColName(String colName) {
-		this.colName = colName;
+	public void setColSname(String colSname) {
+		this.colSname = colSname;
 	}
 	public String getColType() {
 		return colType;
@@ -36,10 +36,10 @@ public class BaseSchool {
 	public void setColNote(String colNote) {
 		this.colNote = colNote;
 	}
-	
 	@Override
 	public String toString() {
-		return "BaseSchool [colId=" + colId + ", colName=" + colName + ", colType=" + colType + ", colIsteach="
+		return "BaseSchool [colId=" + colId + ", colSname=" + colSname + ", colType=" + colType + ", colIsteach="
 				+ colIsteach + ", colNote=" + colNote + "]";
 	}
+
 }
