@@ -16,4 +16,8 @@ public interface TeacherMapper {
 
 	Teacher findByCode(String colCode);
 
+	void updateTeacher(Teacher teacher1);
+
+	void deleteBycolId(@Param("colId") Long colId);
+
 }

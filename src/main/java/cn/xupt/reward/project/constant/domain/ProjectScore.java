@@ -1,6 +1,6 @@
 package cn.xupt.reward.project.constant.domain;
 
-public class ProjectScoreSys {
+public class ProjectScore {
 	private long colId;
 	private String colType;
 	private String colSubtype;

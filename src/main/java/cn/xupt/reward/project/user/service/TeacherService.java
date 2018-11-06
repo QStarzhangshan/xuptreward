@@ -11,6 +11,10 @@ public interface TeacherService {
 	List<Teacher> findAll(String colName, String colSchool);
 
 	Teacher findByCode(String colCode);
+
+	void updateTeacher(Teacher teacher1);
+
+	void deleteBycolId(Long colId);
 	
 	
 }

@@ -68,6 +68,16 @@ public class UserConstants
     public static final int PASSWORD_MAX_LENGTH = 20;
 
     /**
+     * 身份证号码格式限制
+     */
+    public static final String ID_CARD_NUMBER_PATTERN = "^[1-9]\\d{5}(18|19|([23]\\d))\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$";
+    
+    /**
+     * 银行卡格式限制
+     */
+    public static final String BANK_CARD_NUMBER_PATTERN = "^([1-9]{1})(\\d{14}|\\d{18})$";
+    
+    /**
      * 手机号码格式限制
      */
     public static final String MOBILE_PHONE_NUMBER_PATTERN = "^0{0,1}(13[0-9]|15[0-9]|14[0-9]|18[0-9])[0-9]{8}$";

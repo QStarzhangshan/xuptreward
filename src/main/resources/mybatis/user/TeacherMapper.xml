@@ -46,7 +46,24 @@
 		where col_code=#{colCode}
 	</select>
 	
+	<update id="updateTeacher" parameterType="Teacher">
+		update base_teacher 
+		<set>
+			<if test="colTitle != null and colTitle != ''">col_title = #{colTitle},</if>
+			<if test="colSchool != null and colSchool != ''">col_school = #{colSchool},</if>
+			<if test="colDepartment != null and colDepartment != ''">col_department = #{colDepartment},</if>
+			<if test="colDuty != null and colDuty != ''">col_duty = #{colDuty},</if>
+			<if test="colJobtype != null and colJobtype != ''">col_jobtype = #{colJobtype},</if>
+			<if test="colJobname != null and colJobname != ''">col_jobname = #{colJobname},</if>
+			<if test="colJobclass != null and colJobclass != ''">col_jobclass = #{colJobclass}</if>
+		</set>
+		where 1=1
+ 		<if test="colCode != null and colCode  != ''">and col_code = #{colCode}</if>
+	</update>
 	
+	<delete id="deleteBycolId" parameterType="Teacher">
+ 		delete from base_teacher where col_id = #{colId}
+ 	</delete>
 	
 	
 	

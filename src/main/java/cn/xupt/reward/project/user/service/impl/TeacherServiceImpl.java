@@ -30,4 +30,16 @@ public class TeacherServiceImpl implements TeacherService{
 		return teacherMapper.findByCode(colCode);
 	}
 
+	@Override
+	public void updateTeacher(Teacher teacher1) {
+		teacherMapper.updateTeacher(teacher1);
+		
+	}
+
+	@Override
+	public void deleteBycolId(Long colId) {
+		teacherMapper.deleteBycolId(colId);
+		
+	}
+
 }

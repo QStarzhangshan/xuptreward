@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.alibaba.fastjson.JSONObject;
 
 import cn.xupt.reward.common.constant.UserConstants;
 import cn.xupt.reward.framework.web.controller.BaseController;
@@ -25,13 +28,16 @@ import cn.xupt.reward.project.school.domain.BaseSubSchool;
 import cn.xupt.reward.project.user.domain.Permission;
 import cn.xupt.reward.project.user.domain.Teacher;
 import cn.xupt.reward.project.user.domain.User;
+import cn.xupt.reward.project.user.domain.UserRole;
 import cn.xupt.reward.project.user.service.PermissionService;
 import cn.xupt.reward.project.user.service.TeacherService;
+import cn.xupt.reward.project.user.service.UserRoleService;
 import cn.xupt.reward.project.user.service.UserService;
 import cn.xupt.reward.util.Md5Util;
 
 @Controller
 @RequestMapping("/user")
+@RestController
 public class UserController extends BaseController{
 
 	@Autowired
@@ -40,6 +46,33 @@ public class UserController extends BaseController{
 	private TeacherService teacherSerivce;
 	@Autowired
 	private PermissionService permissionService;
+	@Autowired
+	private UserRoleService userroleService;
+	
+	
+	/**
+	 * 主页面,识别身份
+	 * @param colCode
+	 * @param colPasswd
+	 * @param httpServletRequest
+	 * @param httpServletResponse
+	 * @return
+	 */
+	
+	@RequestMapping(value="home")
+	public Map<String,Object> home(String colCode,String colPasswd,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		colCode = (String) httpServletRequest.getSession().getAttribute("colCode");
+		colPasswd = (String) httpServletRequest.getSession().getAttribute("colPasswd");
+		User user = userService.selectUserByColCode(colCode, colPasswd);
+		Teacher teacher = teacherSerivce.findByCode(colCode);
+		map.put("user", user);
+		map.put("teacher", teacher);
+		httpServletRequest.getSession().setAttribute("user", user);
+		httpServletRequest.getSession().setAttribute("teacher", teacher);
+		return map;
+		
+	}
 	
 	/**
 	 * 用户管理
@@ -50,43 +83,89 @@ public class UserController extends BaseController{
 	 */
 	@RequiresPermissions("system:user:management")
 	@RequestMapping(value="/findAll")
-	@ResponseBody
 	public Map<String,Object> userList(@RequestBody BaseSubSchool baseSubSchool,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
 		Map<String,Object> map = new HashMap<String,Object>();
 		List<Teacher> teachers = teacherSerivce.findAll(baseSubSchool.getColName(), baseSubSchool.getColSchool());
 		List<User> users = userService.findAll(baseSubSchool.getColName(), baseSubSchool.getColSchool());
 		map.put("teachers", teachers);
 		map.put("users", users);
-		return map;
-		
+		return map;	
 	}
+	
 	/**
-	 * 主页面
-	 * @param colCode
-	 * @param colPasswd
-	 * @param httpServletRequest
-	 * @param httpServletResponse
-	 * @return
+	 * 点击用户根据工号得到用户
 	 */
 	
-	@RequestMapping(value="home")
-	@ResponseBody
-	public User home(String colCode,String colPasswd,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
-		colCode = (String) httpServletRequest.getSession().getAttribute("colCode");
-		colPasswd = (String) httpServletRequest.getSession().getAttribute("colPasswd");
-		User user = userService.selectUserByColCode(colCode, colPasswd);
-		httpServletRequest.getSession().setAttribute("user", user);
-		return user;
-		
+	@RequestMapping("findBycolCode")
+	public Map<String,Object> findBycolCode(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,
+			@RequestBody String info){
+		Map<String,Object> map = new HashMap<String,Object>();
+		JSONObject obj = JSONObject.parseObject(info);
+		String colCode = obj.getString("colCode");
+		User  user = userService.findBycolCode(colCode);
+		Teacher teacher = teacherSerivce.findByCode(colCode);
+		httpServletRequest.getSession().setAttribute("userBycolCode", user);
+		httpServletRequest.getSession().setAttribute("teacherBycolCode", teacher);
+		map.put("users", user);
+		map.put("teachers", teacher);
+		return map;
 	}
 	
+	/**
+	 * 修改用户
+	*/
+	@RequiresPermissions("system:user:update")
+	@RequestMapping(value="updateUser",method=RequestMethod.POST)
+	public Message modifyUser(@RequestBody String info,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
+		User user = (User) httpServletRequest.getSession().getAttribute("user");
+		User user1 = (User) httpServletRequest.getSession().getAttribute("userBycolCode");
+		Teacher teacher1 = (Teacher) httpServletRequest.getSession().getAttribute("teacherBycolCode");
+		JSONObject obj = JSONObject.parseObject(info);
+		String colSchool =(String)obj.get("colSchool");
+		String colDepartment =(String)obj.get("colDepartment");
+		String colTitle =(String)obj.get("colTitle");
+		String colDuty =(String)obj.get("colDuty");
+		String colJobtype =(String)obj.get("colJobType");
+		String colJobname =(String)obj.get("colJobName");
+		String colJobclass =(String)obj.get("colJobClass");
+		Long colRank = (Long)obj.get("colRank");
+		if(user.getColRank().longValue()==1) {   //人事处只能修改基本信息
+			teacher1.setColSchool(colSchool);
+			teacher1.setColDepartment(colDepartment);
+			teacher1.setColTitle(colTitle);
+			teacher1.setColDuty(colDuty);
+			teacher1.setColJobtype(colJobtype);
+			teacher1.setColJobname(colJobname);
+			teacher1.setColJobclass(colJobclass);
+			teacherSerivce.updateTeacher(teacher1);
+			return Message.success("修改用户信息成功");
+		}else if(user.getColRank()==3&&user.getColRank().longValue()>user1.getColRank().longValue()) { //一级学院领导赋予权限，去管理科研项目
+			user1.setColRank(colRank);
+			userService.updateUserRank(user1);
+			userroleService.updateUserRole(user1);                                                                                                       
+			return Message.success("修改用户权限成功");
+		}else {   //超管
+			teacher1.setColSchool(colSchool);
+			teacher1.setColDepartment(colDepartment);
+			teacher1.setColTitle(colTitle);
+			teacher1.setColDuty(colDuty);
+			teacher1.setColJobtype(colJobtype);
+			teacher1.setColJobname(colJobname);
+			teacher1.setColJobclass(colJobclass);
+			user1.setColRank(colRank);
+			teacherSerivce.updateTeacher(teacher1);
+			userService.updateUserRank(user1);
+			return Message.success("全部修改");
+		}
+	} 
 	
 	/**
 	 * 添加用户
 	 */
-	@RequestMapping(value="insertUser",method=RequestMethod.POST)
-	@ResponseBody
+	@RequiresPermissions("system:user:add")
+	@RequestMapping(value="addUser",method=RequestMethod.POST)
 	public Message insertUser(@RequestBody User user,@RequestBody Teacher teacher) {
+		UserRole userrole = new UserRole();
 		String a = checkColCode(user);
 		if(a=="1") {
 			System.out.println("000");
@@ -100,46 +179,48 @@ public class UserController extends BaseController{
 		}else if(user.getColName()==null||user.getColName()=="") {
 			System.out.println("333");
 			return Message.error(4, "姓名不能为空");
-		}else if(!user.getColEmail().matches(UserConstants.EMAIL_PATTERN)){
-			System.out.println("444");
-			return Message.error(5, "邮箱格式错误");
-		}else if(!user.getColTelephone().matches(UserConstants.MOBILE_PHONE_NUMBER_PATTERN)) {
-			System.out.println("555");
-			return Message.error(6, "手机号格式错误");
+		}else if(teacher.getColSchool()==null||teacher.getColSchool()==""){
+			return Message.error(7, "学院不能为空");
+		}else if(teacher.getColDepartment()==null||teacher.getColDepartment()=="") {
+			return Message.error(8, "部门不能为空");
 		}else {
-			user.setColCode(user.getColCode());
+			//user.setColCode(user.getColCode()); //教工号
 			try {
-				user.setColPasswd(Md5Util.md5("123456"));
+				user.setColPasswd(Md5Util.md5("123456")); //密码默认123456
 			} catch (NoSuchAlgorithmException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			user.setColName(user.getColName());
-			user.setColEmail(user.getColEmail());
-			user.setColTelephone(user.getColTelephone());
-			user.setColSex(user.getColSex());
-			user.setColEducation(user.getColEducation());
-			user.setColRank(user.getColRank());
-			teacher.setColCode(user.getColCode());
-			teacher.setColTitle(teacher.getColTitle());
-			teacher.setColSchool(teacher.getColSchool());
-			teacher.setColDepartment(teacher.getColDepartment());
-			teacher.setColDuty(teacher.getColDuty());
-			teacher.setColJobtype(teacher.getColJobtype());
-			teacher.setColJobname(teacher.getColJobname());
-			teacher.setColJobclass(teacher.getColJobclass());
-			System.out.println(teacher.getColDepartment());
+			//user.setColName(user.getColName()); //姓名
+			//user.setColSex(user.getColSex()); //性别
+			//user.setColTime(user.getColTime()); //报到时间
+			user.setColRank((long) 0);
+			//teacher.setColCode(user.getColCode());
+			//teacher.setColSchool(teacher.getColSchool()); //学院
+			//teacher.setColDepartment(teacher.getColDepartment()); //部门
 			teacherSerivce.insertTeacher(teacher);
 			userService.insertUser(user);
-			return Message.success("注册成功");
+			userrole.setRoleId((long) 4);
+			userroleService.insert(userrole);
+			return Message.success("添加用户成功");
 		}
+	}
+	@RequiresPermissions("system:user:delete")
+	@RequestMapping("deleteUser")
+	public Message deleteUser(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,
+			@RequestBody String col) {
+		JSONObject obj = JSONObject.parseObject(col);
+		Long colId = obj.getLong("colId");
+	    userService.deleteBycolId(colId);
+	    teacherSerivce.deleteBycolId(colId);
+	    userroleService.deleteBycolId(colId);
+	    return Message.success("删除用户成功");
 	}
 	
 	/**
 	 * 校验工号是否唯一
 	 */
 	@RequestMapping(value="checkColCode",method=RequestMethod.POST)
-	@ResponseBody
 	public String checkColCode(User user) {
 		String uniqueFlag = "0";
 		if(user.getColCode()!=null) {
@@ -147,18 +228,16 @@ public class UserController extends BaseController{
 		}
 		return uniqueFlag;
 	}
+	
 	/**
 	 * 查询用户权限
 	 * @param colId
 	 * @return
 	 */
 	@RequestMapping(value="selectpers/{colId}")
-	@ResponseBody
 	public Set<String> selectpers(@PathVariable("colId") Long colId){
 		System.out.println("------colId");
 		Set<String> pers =permissionService.selectPermissionBycolId(colId);
-		
 		return pers;
-	}
-	
+	}	
 }

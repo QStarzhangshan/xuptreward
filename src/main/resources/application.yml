@@ -1,26 +1,28 @@
-#������������
 server:
-  #�˿�
   port: 80
   tomcat:
     uri-encoding: utf-8
-#Spring����
+#Spring
 spring:
   messages:
-    #���ʻ���Դ�ļ�·��
     basename: i18n/messages
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
   profiles:
     active: druid
+  mail:
+    host: smtp.163.com
+    username: zs15991670773@163.com
+    password: herocandy521
+    default-encoding: utf-8
+    port: 25
+mail:
+  fromMail.addr: zs15991670773@163.com
 # MyBatis
 mybatis:
-    # ����ָ��������
     typeAliasesPackage: cn.xupt.reward
-    # ����mapper��ɨ�裬�ҵ����е�mapper.xmlӳ���ļ�
     mapperLocations: classpath:mybatis/**/*Mapper.xml
-    # ����ȫ�ֵ������ļ�
     configLocation: classpath:mybatis/mybatis-config.xml
 # PageHelper
 pagehelper:
@@ -52,3 +54,4 @@ shiro:
     captchaEbabled: true
     # 验证码类型 math 数组计算 char 字符
     captchaType: math
+#mail

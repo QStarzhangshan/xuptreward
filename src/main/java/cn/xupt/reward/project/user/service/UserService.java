@@ -16,4 +16,18 @@ public interface UserService {
 
 	public void insertUser(User user);
 
+	public User findBycolCode(String colCode);
+
+	public void updateUserRank(User user1);
+
+	public void deleteBycolId(Long colId);
+
+	public void updatePasswd(Long colId, String newPasswd);
+
+	public int fillInfo(User user);
+
+	public String findEmail(String colCode);
+
+	public int initPasswd(User user);
+
 }

@@ -23,4 +23,18 @@ public interface UserMapper {
 
 	public void insertUser(User user);
 
+	public User findBycolCode(@Param("colCode") String colCode);
+
+	public void updateUserRank(User user1);
+
+	public void deleteBycolId(@Param("colId") Long colId);
+
+	public void updatePasswd(Long colId,String newPasswd);
+
+	public int fillInfo(User user);
+
+	public String findEmail(@Param("colCode") String colCode);
+
+	public int initPasswd(User user);
+
 }

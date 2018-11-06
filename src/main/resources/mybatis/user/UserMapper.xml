@@ -14,6 +14,8 @@
 		<result property="colLeavetime"       column="col_leavetime"       />
 		<result property="colEmail"     column="col_email"     />
 		<result property="colTelephone"         column="col_telephone"         />
+		<result property="colIdcard"         column="col_idcard"         />
+		<result property="colBankcard"         column="col_bankcard"         />
 		<result property="colRole"     column="col_role"    />
 		<result property="colRank"       column="col_rank"       />
 		<result property="colTemp"    column="col_temp"   />
@@ -36,6 +38,10 @@
 		select col_role  from base_users where col_code=#{colCode}
 	</select>
 	
+	<select id="findBycolCode" parameterType="String" resultMap="UserResult">
+		select * from base_users where col_code=#{colCode}
+	</select>
+	
 	<select id="findAll" parameterType="String" resultMap="UserResult">
 		select * 
 		from base_users u
@@ -49,17 +55,65 @@
 		select count(*) from base_users where col_code=#{colCode}
 	</select>
 	
-	<insert id="insertUser" >
+	<insert id="insertUser" parameterType="User" >
 		INSERT INTO base_users(
-		col_code,col_name,col_passwd,col_sex,col_education,col_entry_date,col_leavetime,col_email,col_telephone,col_role,col_rank,
+		col_id,col_code,col_name,col_passwd,col_sex,col_education,col_entry_date,col_leavetime,col_email,col_telephone,col_role,col_rank,
 		col_temp,col_time,col_note,col_pinyin,col_pinyinf,col_img,col_view_role,col_passtime
 		) VALUES (
-		#{colCode},#{colName},#{colPasswd},#{colSex},#{colEducation},#{colEntryDate},#{colLeavetime},#{colEmail},
+		#{colId},#{colCode},#{colName},#{colPasswd},#{colSex},#{colEducation},#{colEntryDate},#{colLeavetime},#{colEmail},
 		#{colTelephone},#{colRole},#{colRank},#{colTemp},#{colTime},#{colNote},#{colPinyin},#{colPinyinf},#{colImg},
 		#{colViewRole},#{colPasstime}
 		)
 	</insert>
 	
+	<update id="updateUserRank" parameterType="User">
+		update base_users 
+		<set>
+			<if test="colRank!=null and colRank!=''">col_rank=#{colRank}</if>
+		</set> 
+		where 1=1
+ 		<if test="colCode != null and colCode  != ''">and col_code = #{colCode}</if>
+	</update>
+	
+	<delete id="deleteBycolId" parameterType="User">
+ 		delete from base_users where col_id = #{colId}
+ 	</delete>
+ 	
+ 	<update id="updatePasswd">
+ 		update base_users 
+ 		<set>
+ 			<if test="newPasswd!=null and newPasswd''">col_passwd=#{1}</if>
+ 		</set>
+ 		where 1=1
+ 		<if test="colId != null and colId  != ''">and col_id = #{0}</if>
+ 	</update>
+	
+	<update id="fillInfo" parameterType="User">
+		update base_users
+		<set>
+			<if test="colEmail!=null and colEmail''">col_email=#{colEmail}</if>
+			<if test="colTelephone!=null and colTelephone''">col_telephone=#{colTelephone}</if>
+			<if test="colIdcard!=null and colIdcard''">col_idcard=#{colIdcard}</if>
+			<if test="colBankcard!=null and colBankcard''">col_bankcard=#{colBankcard}</if>
+		</set>
+		where 1=1
+ 		<if test="colId != null and colId  != ''">and col_id = #{colId}</if>
+	</update>
+	
+	<select id="findEmail" parameterType="String" resultType="String">
+		select u.col_email from base_users u 
+		where 1=1 
+		<if test="!colCode=null and !colCode=''">and col_code=#{colCode}</if>	
+	</select>
+	
+	<update id="initPasswd" parameterType="User">
+		update base_users 
+		<set>
+			<if test="!colPasswd=null and !colPasswd=''">col_passwd=#{colPasswd}</if>
+		</set>
+		where 1=1
+		<if test="!colCode=null and !colCode=''">and col_code=#{colCode}</if>
+	</update>
 	<!--<select id="selectUserByPhoneNumber" parameterType="String" resultMap="UserResult">-->
 		<!--select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email, u.phonenumber, u.sex, u.avatar, u.password, u.salt, u.status, u.refuse_des, u.login_ip, u.login_date, u.create_time,-->
        		    <!--d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status-->

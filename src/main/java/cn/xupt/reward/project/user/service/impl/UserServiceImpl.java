@@ -54,6 +54,44 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void insertUser(User user) {
-		userMapper.insertUser(user);
+		 userMapper.insertUser(user);
+	}
+
+	@Override
+	public User findBycolCode(String colCode) {
+		return userMapper.findBycolCode(colCode);
+	}
+
+	@Override
+	public void updateUserRank(User user1) {
+		userMapper.updateUserRank(user1);
+		
+	}
+
+	@Override
+	public void deleteBycolId(Long colId) {
+		userMapper.deleteBycolId(colId);
+		
+	}
+
+	@Override
+	public void updatePasswd(Long colId, String newPasswd) {
+		userMapper.updatePasswd(colId,newPasswd);
+		
+	}
+
+	@Override
+	public int fillInfo(User user) {
+		return userMapper.fillInfo(user);
+	}
+
+	@Override
+	public String findEmail(String colCode) {
+		return userMapper.findEmail(colCode);
+	}
+
+	@Override
+	public int initPasswd(User user) {
+		return userMapper.initPasswd(user);
 	}
 }

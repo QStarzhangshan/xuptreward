@@ -5,10 +5,7 @@ import cn.xupt.reward.framework.web.domain.BaseEntity;
 import java.sql.Timestamp;
 import java.util.Date;
 
-/**
- * @author ZH
- *
- * */
+
 public class User extends BaseEntity{
 
     private static final long serialVersionUID = 1L;
@@ -22,6 +19,8 @@ public class User extends BaseEntity{
     private Date colLeavetime;
     private String colEmail;
     private String colTelephone;
+    private String colIdcard;
+    private String colBankcard;
     private Long colRole;
     private Long colRank;
     private Long colTemp;
@@ -37,7 +36,28 @@ public class User extends BaseEntity{
         return serialVersionUID;
     }
 
-    public Long getColId() {
+    
+    public String getColIdcard() {
+		return colIdcard;
+	}
+
+
+	public void setColIdcard(String colIdcard) {
+		this.colIdcard = colIdcard;
+	}
+
+
+	public String getColBankcard() {
+		return colBankcard;
+	}
+
+
+	public void setColBankcard(String colBankcard) {
+		this.colBankcard = colBankcard;
+	}
+
+
+	public Long getColId() {
         return colId;
     }
 
@@ -199,17 +219,16 @@ public class User extends BaseEntity{
         this.colImg = colImg;
     }
 
+
 	@Override
 	public String toString() {
 		return "User [colId=" + colId + ", colCode=" + colCode + ", colName=" + colName + ", colPasswd=" + colPasswd
 				+ ", colSex=" + colSex + ", colEducation=" + colEducation + ", colEntryDate=" + colEntryDate
 				+ ", colLeavetime=" + colLeavetime + ", colEmail=" + colEmail + ", colTelephone=" + colTelephone
-				+ ", colRole=" + colRole + ", colRank=" + colRank + ", colTemp=" + colTemp + ", colTime=" + colTime
-				+ ", colNote=" + colNote + ", colPinyin=" + colPinyin + ", colPinyinf=" + colPinyinf + ", colImg="
-				+ colImg + ", colViewRole=" + colViewRole + ", colPasstime=" + colPasstime + "]";
+				+ ", colIdcard=" + colIdcard + ", colBankcard=" + colBankcard + ", colRole=" + colRole + ", colRank="
+				+ colRank + ", colTemp=" + colTemp + ", colTime=" + colTime + ", colNote=" + colNote + ", colPinyin="
+				+ colPinyin + ", colPinyinf=" + colPinyinf + ", colImg=" + colImg + ", colViewRole=" + colViewRole
+				+ ", colPasstime=" + colPasstime + "]";
 	}
-
-
-
 
 }
