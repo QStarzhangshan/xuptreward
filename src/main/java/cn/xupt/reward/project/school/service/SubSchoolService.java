@@ -6,6 +6,6 @@ import cn.xupt.reward.project.school.domain.BaseSubSchool;
 
 public interface SubSchoolService {
 
-	List<BaseSubSchool> findAllBySchool(String colName);
+	List<BaseSubSchool> findAllBySchool(String colSname);
 
 }

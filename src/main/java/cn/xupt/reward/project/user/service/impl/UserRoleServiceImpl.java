@@ -26,8 +26,8 @@ public class UserRoleServiceImpl implements UserRoleService{
 	}
 
 	@Override
-	public void deleteBycolId(Long colId) {
-		userroleMapper.deleteBycolId(colId);
+	public int deleteBycolId(Long colId) {
+		return userroleMapper.deleteBycolId(colId);
 		
 	}
 

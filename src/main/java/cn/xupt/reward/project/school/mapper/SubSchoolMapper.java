@@ -10,6 +10,6 @@ import cn.xupt.reward.project.school.domain.BaseSubSchool;
 @Mapper
 public interface SubSchoolMapper {
 
-	List<BaseSubSchool> findAllBySchool(@Param(value="colName") String colName);
+	List<BaseSubSchool> findAllBySchool(@Param(value="colSname") String colSname);
 
 }

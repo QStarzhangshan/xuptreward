@@ -46,8 +46,8 @@
 		select * 
 		from base_users u
 		left join base_teacher t on u.col_code = t.col_code
-		where <if test="colSchool != null and colSchool != ''">t.col_school=#{colSchool}</if>
-		and <if test="colName != null and colName != ''">t.col_department=#{colName}</if>
+		where <if test="colSname != null and colSname != ''">t.col_school=#{colSname}</if>
+		<if test="colDname != null and colDname != ''">and t.col_department=#{colDname}</if>
 		group by u.col_code
 	</select>
 	

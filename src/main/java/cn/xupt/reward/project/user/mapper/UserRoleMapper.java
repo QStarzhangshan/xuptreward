@@ -13,6 +13,6 @@ public interface UserRoleMapper {
 
 	void updateUserRole(User user1);
 
-	void deleteBycolId(@Param("colId") Long colId);
+	int deleteBycolId(@Param("colId") Long colId);
 	
 }

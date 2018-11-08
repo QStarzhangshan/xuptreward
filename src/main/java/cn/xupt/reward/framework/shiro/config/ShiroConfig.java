@@ -126,7 +126,7 @@ public class ShiroConfig {
         captchaValidateFilter.setCaptchaType(captchaType);
         return captchaValidateFilter;
     }
-    
+   
 	@Bean
     public FilterRegistrationBean httpServletRequestReplacedRegistration() {
         FilterRegistrationBean registration = new FilterRegistrationBean();

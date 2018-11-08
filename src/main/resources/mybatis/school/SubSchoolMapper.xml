@@ -15,7 +15,7 @@
 	<select id="findAllBySchool" parameterType="String" resultMap="BaseSubSchoolResult">
 		select * 
 		from base_subschool
-		<if test="colName != null and colName != ''">where col_school=#{colSname}</if>
+		<if test="colSname != null and colSname != ''">where col_school=#{colSname}</if>
 	</select>
 	
 </mapper>

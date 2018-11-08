@@ -36,8 +36,8 @@ public class UserServiceImpl implements UserService{
     }
 
 	@Override
-	public List<User> findAll(String colName,String colSchool) {
-		return userMapper.findAll(colName,colSchool);
+	public List<User> findAll(String colSname,String colDname) {
+		return userMapper.findAll(colSname,colDname);
 	}
 
 	@Override
@@ -69,8 +69,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void deleteBycolId(Long colId) {
-		userMapper.deleteBycolId(colId);
+	public int deleteBycolId(Long colId) {
+		return userMapper.deleteBycolId(colId);
 		
 	}
 

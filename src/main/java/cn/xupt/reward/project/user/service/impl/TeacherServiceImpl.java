@@ -21,8 +21,8 @@ public class TeacherServiceImpl implements TeacherService{
 	}
 
 	@Override
-	public List<Teacher> findAll(String colName, String colSchool) {
-		return teacherMapper.findAll(colName,colSchool);
+	public List<Teacher> findAll(String colSname, String colDname) {
+		return teacherMapper.findAll(colSname,colDname);
 	}
 
 	@Override
@@ -37,8 +37,8 @@ public class TeacherServiceImpl implements TeacherService{
 	}
 
 	@Override
-	public void deleteBycolId(Long colId) {
-		teacherMapper.deleteBycolId(colId);
+	public int deleteBycolId(Long colId) {
+		return teacherMapper.deleteBycolId(colId);
 		
 	}
 

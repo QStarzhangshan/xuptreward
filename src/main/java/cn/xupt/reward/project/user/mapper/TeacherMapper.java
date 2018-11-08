@@ -12,12 +12,12 @@ public interface TeacherMapper {
 
 	void insertTeacher(Teacher teacher);
 
-	List<Teacher> findAll(@Param("colName") String colName, @Param("colSchool") String colSchool);
+	List<Teacher> findAll(@Param("colSname") String colSname, @Param("colDname") String colDname);
 
 	Teacher findByCode(String colCode);
 
 	void updateTeacher(Teacher teacher1);
 
-	void deleteBycolId(@Param("colId") Long colId);
+	int deleteBycolId(@Param("colId") Long colId);
 
 }

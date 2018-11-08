@@ -83,17 +83,22 @@ public class UserController extends BaseController{
 	 */
 	@RequiresPermissions("system:user:management")
 	@RequestMapping(value="/findAll")
-	public Map<String,Object> userList(@RequestBody BaseSubSchool baseSubSchool,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
+	public Map<String,Object> userList(@RequestBody String info,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
 		Map<String,Object> map = new HashMap<String,Object>();
-		List<Teacher> teachers = teacherSerivce.findAll(baseSubSchool.getColDname(), baseSubSchool.getColSchool());
-		List<User> users = userService.findAll(baseSubSchool.getColDname(), baseSubSchool.getColSchool());
+		JSONObject obj = JSONObject.parseObject(info);
+		String colSname = obj.getString("colSname");
+		String colDname = obj.getString("colDname");
+		System.out.println(colSname);
+		System.out.println(colDname);
+		List<Teacher> teachers = teacherSerivce.findAll(colSname, colDname);
+		List<User> users = userService.findAll(colSname, colDname);
 		map.put("teachers", teachers);
 		map.put("users", users);
 		return map;	
 	}
 	
 	/**
-	 * 点击用户根据工号得到用户
+	 * 点击用户
 	 */
 	
 	@RequestMapping("findBycolCode")
@@ -109,6 +114,31 @@ public class UserController extends BaseController{
 		map.put("users", user);
 		map.put("teachers", teacher);
 		return map;
+	}
+	/**
+	 * 显示用户基本信息
+	 * @param httpServletRequest
+	 * @param httpServletResponse
+	 * @return
+	 
+	public Map<String,Object> userView(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse){
+		Map<String,Object> map = new HashMap<String,Object>();
+		User user = (User) httpServletRequest.getSession().getAttribute("userBycolCode");
+		Teacher teacher = (Teacher) httpServletRequest.getSession().getAttribute("teacherBycolCode");
+		map.put("users", user);
+		map.put("teachers", teacher);
+		return map;
+	}*/
+	
+	@RequiresPermissions("system:user:updateButton")
+	@RequestMapping("updateButton")
+	public Message updateButton(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
+		User user = (User) httpServletRequest.getSession().getAttribute("user");
+		if(user.getColRank()==1||user.getColRank()==4||user.getColRank()==3) {
+			return Message.success("进入修改用户页面");
+		}else {
+			return Message.error(1, "您没有权限修改");
+		}
 	}
 	
 	/**
@@ -158,6 +188,16 @@ public class UserController extends BaseController{
 			return Message.success("全部修改");
 		}
 	} 
+	@RequiresPermissions("system:user:addButton")
+	@RequestMapping("addButton")
+	public Message addButton(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
+		User user = (User) httpServletRequest.getSession().getAttribute("user");
+		if(user.getColRank()==1||user.getColRank()==4) {
+			return Message.success("进入添加用户页面");
+		}else {
+			return Message.error(1, "您没有权限添加");
+		}
+	}
 	
 	/**
 	 * 添加用户
@@ -211,10 +251,11 @@ public class UserController extends BaseController{
 			@RequestBody String col) {
 		JSONObject obj = JSONObject.parseObject(col);
 		Long colId = obj.getLong("colId");
-	    userService.deleteBycolId(colId);
-	    teacherSerivce.deleteBycolId(colId);
-	    userroleService.deleteBycolId(colId);
-	    return Message.success("删除用户成功");
+	    if(userService.deleteBycolId(colId)>0&&teacherSerivce.deleteBycolId(colId)>0&&userroleService.deleteBycolId(colId)>0) {
+	    	 return Message.success("删除用户成功");
+	    }else {
+	    	return Message.error(1, "删除用户失败");
+	    }
 	}
 	
 	/**

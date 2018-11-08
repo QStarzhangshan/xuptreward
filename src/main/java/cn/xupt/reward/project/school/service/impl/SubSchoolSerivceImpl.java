@@ -16,8 +16,8 @@ public class SubSchoolSerivceImpl implements SubSchoolService{
 	private SubSchoolMapper subSchoolMapper;
 	
 	@Override
-	public List<BaseSubSchool> findAllBySchool(String colName) {
-		return subSchoolMapper.findAllBySchool(colName);
+	public List<BaseSubSchool> findAllBySchool(String colSname) {
+		return subSchoolMapper.findAllBySchool(colSname);
 	}
 
 }

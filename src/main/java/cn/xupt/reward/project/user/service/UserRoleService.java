@@ -9,6 +9,6 @@ public interface UserRoleService {
 
 	void updateUserRole(User user1);
 
-	void deleteBycolId(Long colId);
+	int deleteBycolId(Long colId);
 
 }

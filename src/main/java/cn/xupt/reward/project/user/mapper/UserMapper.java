@@ -17,7 +17,7 @@ public interface UserMapper {
 
     public Long selectColRole(String colCode);
 
-	public List<User> findAll(@Param("colName") String colName, @Param("colSchool") String colSchool);
+	public List<User> findAll(@Param("colSname") String colSname, @Param("colDname") String colDname);
 
 	public int checkColCode(String colCode);
 
@@ -27,7 +27,7 @@ public interface UserMapper {
 
 	public void updateUserRank(User user1);
 
-	public void deleteBycolId(@Param("colId") Long colId);
+	public int deleteBycolId(@Param("colId") Long colId);
 
 	public void updatePasswd(Long colId,String newPasswd);
 

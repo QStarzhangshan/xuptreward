@@ -10,7 +10,7 @@ public interface UserService {
 
     public Long selectColRole(String colCode);
 
-	public List<User> findAll(String colName, String colDepartment);
+	public List<User> findAll(String colSname, String colDname);
 
 	public String checkColCode(String colCode);
 
@@ -20,7 +20,7 @@ public interface UserService {
 
 	public void updateUserRank(User user1);
 
-	public void deleteBycolId(Long colId);
+	public int deleteBycolId(Long colId);
 
 	public void updatePasswd(Long colId, String newPasswd);
 

@@ -17,6 +17,12 @@ spring:
     password: herocandy521
     default-encoding: utf-8
     port: 25
+  http:
+    multipart:
+      max-file-size: 30Mb
+      max-request-size: 30Mb
+prop:
+  upload-folder: files/
 mail:
   fromMail.addr: zs15991670773@163.com
 # MyBatis

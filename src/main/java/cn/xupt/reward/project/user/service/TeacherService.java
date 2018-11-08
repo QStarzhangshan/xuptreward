@@ -8,13 +8,13 @@ public interface TeacherService {
 
 	void insertTeacher(Teacher teacher);
 
-	List<Teacher> findAll(String colName, String colSchool);
+	List<Teacher> findAll(String colSname, String colDname);
 
 	Teacher findByCode(String colCode);
 
 	void updateTeacher(Teacher teacher1);
 
-	void deleteBycolId(Long colId);
+	int deleteBycolId(Long colId);
 	
 	
 }
