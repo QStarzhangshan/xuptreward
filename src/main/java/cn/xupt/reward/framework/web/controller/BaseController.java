@@ -21,7 +21,7 @@ public class BaseController
 {
     /**
      * 设置请求分页数据
-     */
+     
     protected void startPage()
     {
         PageDomain pageDomain = TableSupport.buildPageRequest();
@@ -33,7 +33,7 @@ public class BaseController
             PageHelper.startPage(pageNum, pageSize, orderBy);
         }
     }
-
+*/
     /**
      * 响应请求分页数据
      */

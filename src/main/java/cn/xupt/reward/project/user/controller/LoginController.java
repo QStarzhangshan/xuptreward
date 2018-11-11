@@ -2,37 +2,35 @@ package cn.xupt.reward.project.user.controller;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 
 import cn.xupt.reward.common.utils.StringUtils;
 import cn.xupt.reward.framework.web.controller.BaseController;
 import cn.xupt.reward.framework.web.domain.Message;
+import cn.xupt.reward.project.user.domain.Teacher;
 import cn.xupt.reward.project.user.domain.User;
+import cn.xupt.reward.project.user.service.TeacherService;
 import cn.xupt.reward.project.user.service.UserService;
 
 
@@ -42,6 +40,8 @@ public class LoginController extends BaseController{
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private TeacherService teacherSerivce;
     
     @Autowired
 	private DefaultKaptcha defaultKaptcha;
@@ -82,6 +82,7 @@ public class LoginController extends BaseController{
         }
     }
     }
+	
     /**
      * 退出登陆 页面需要转到登陆页面
      * @return
@@ -95,6 +96,12 @@ public class LoginController extends BaseController{
     	return Message.success("退出登陆成功");
     }
     
+    /**
+     * 验证码
+     * @param httpServletRequest
+     * @param httpServletResponse
+     * @throws Exception
+     */
 	@RequestMapping(value="/defaultKaptcha",method = RequestMethod.GET)
 	public void defaultKaptcha(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) throws Exception{
 		 	byte[] captchaChallengeAsJpeg = null;  

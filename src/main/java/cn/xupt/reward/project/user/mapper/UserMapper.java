@@ -29,9 +29,9 @@ public interface UserMapper {
 
 	public int deleteBycolId(@Param("colId") Long colId);
 
-	public void updatePasswd(Long colId,String newPasswd);
+	public void updatePasswd(@Param("colId") Long colId,@Param("newPasswd") String newPasswd);
 
-	public int fillInfo(User user);
+	public int fillInfo(@Param("colEmail")String colEmail,@Param("colBankcard")String colBankcard,@Param("colIdcard")String colIdcard,@Param("colTelephone")String colTelephone,@Param("userId") Long userId);
 
 	public String findEmail(@Param("colCode") String colCode);
 

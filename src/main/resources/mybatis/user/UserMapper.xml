@@ -43,10 +43,11 @@
 	</select>
 	
 	<select id="findAll" parameterType="String" resultMap="UserResult">
-		select * 
+		select u.* 
 		from base_users u
 		left join base_teacher t on u.col_code = t.col_code
-		where <if test="colSname != null and colSname != ''">t.col_school=#{colSname}</if>
+		where 1=1
+		<if test="colSname != null and colSname != ''">and t.col_school=#{colSname}</if>
 		<if test="colDname != null and colDname != ''">and t.col_department=#{colDname}</if>
 		group by u.col_code
 	</select>
@@ -82,28 +83,28 @@
  	<update id="updatePasswd">
  		update base_users 
  		<set>
- 			<if test="newPasswd!=null and newPasswd''">col_passwd=#{1}</if>
+ 			<if test="newPasswd!=null and newPasswd!=''">col_passwd=#{newPasswd}</if>
  		</set>
  		where 1=1
- 		<if test="colId != null and colId  != ''">and col_id = #{0}</if>
+ 		<if test="colId != null and colId  != ''">and col_id = #{colId}</if>
  	</update>
 	
 	<update id="fillInfo" parameterType="User">
 		update base_users
 		<set>
-			<if test="colEmail!=null and colEmail''">col_email=#{colEmail}</if>
-			<if test="colTelephone!=null and colTelephone''">col_telephone=#{colTelephone}</if>
-			<if test="colIdcard!=null and colIdcard''">col_idcard=#{colIdcard}</if>
-			<if test="colBankcard!=null and colBankcard''">col_bankcard=#{colBankcard}</if>
+			<if test="colEmail!=null and colEmail!=''">col_email=#{colEmail},</if>
+			<if test="colTelephone!=null and colTelephone!=''">col_telephone=#{colTelephone},</if>
+			<if test="colIdcard!=null and colIdcard!=''">col_idcard=#{colIdcard},</if>
+			<if test="colBankcard!=null and colBankcard!=''">col_bankcard=#{colBankcard}</if>
 		</set>
 		where 1=1
- 		<if test="colId != null and colId  != ''">and col_id = #{colId}</if>
+ 		<if test="userId != null and userId  != ''">and col_id = #{userId}</if>
 	</update>
 	
-	<select id="findEmail" parameterType="String" resultType="String">
+	<select id="findEmail" resultType="String">
 		select u.col_email from base_users u 
 		where 1=1 
-		<if test="!colCode=null and !colCode=''">and col_code=#{colCode}</if>	
+		<if test="colCode!=null and colCode!=''">and col_code=#{colCode}</if>	
 	</select>
 	
 	<update id="initPasswd" parameterType="User">

@@ -6,6 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 import cn.xupt.reward.common.constant.UserConstants;
 import cn.xupt.reward.project.user.domain.User;
 import cn.xupt.reward.project.user.mapper.UserMapper;
@@ -37,7 +40,9 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public List<User> findAll(String colSname,String colDname) {
+		//PageHelper.startPage(pageNum,pageSize);
 		return userMapper.findAll(colSname,colDname);
+		 
 	}
 
 	@Override
@@ -81,8 +86,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public int fillInfo(User user) {
-		return userMapper.fillInfo(user);
+	public int fillInfo(String colEmail,String colBankcard,String colIdcard,String colTelephone,Long userId) {
+		return userMapper.fillInfo(colEmail,colBankcard,colIdcard,colTelephone,userId);
 	}
 
 	@Override

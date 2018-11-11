@@ -2,10 +2,10 @@ package cn.xupt.reward.framework.shiro.config;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.Filter;
 
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -21,6 +21,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
+import com.github.pagehelper.PageHelper;
 
 import cn.xupt.reward.framework.shiro.exception.MyExceptionHandler;
 import cn.xupt.reward.framework.web.filter.CaptchaValidateFilter;
@@ -69,9 +70,8 @@ public class ShiroConfig {
         ShiroRealm myShiroRealm = new ShiroRealm();
        // myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return myShiroRealm;
-    }
-
-
+    }    
+    
     @Bean
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
@@ -98,8 +98,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/logout", "anon");
        // filterChainDefinitionMap.put("/captcha/captchaImage**", "anon");
        // filterChainDefinitionMap.put("/getlogin", "anon,captchaValidate");
-        filterChainDefinitionMap.put("/**", "anon"); //菜单列表显示需要身份认证
-        filterChainDefinitionMap.put("/**/**", "anon"); //具体操作不需要身份认证
+        filterChainDefinitionMap.put("/*", "anon"); //菜单列表显示需要身份认证
+        filterChainDefinitionMap.put("/*/*", "anon"); //具体操作不需要身份认证
         //配置shiro默认登录界面地址，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
         shiroFilterFactoryBean.setLoginUrl("/unauth");
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");        //拦截器.

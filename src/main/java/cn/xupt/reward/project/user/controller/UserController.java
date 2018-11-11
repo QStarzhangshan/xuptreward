@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
 
 import cn.xupt.reward.common.constant.UserConstants;
 import cn.xupt.reward.framework.web.controller.BaseController;
 import cn.xupt.reward.framework.web.domain.Message;
-import cn.xupt.reward.project.school.domain.BaseSubSchool;
-import cn.xupt.reward.project.user.domain.Permission;
+import cn.xupt.reward.framework.web.page.TableDataInfo;
 import cn.xupt.reward.project.user.domain.Teacher;
 import cn.xupt.reward.project.user.domain.User;
 import cn.xupt.reward.project.user.domain.UserRole;
@@ -49,7 +49,6 @@ public class UserController extends BaseController{
 	@Autowired
 	private UserRoleService userroleService;
 	
-	
 	/**
 	 * 主页面,识别身份
 	 * @param colCode
@@ -71,9 +70,8 @@ public class UserController extends BaseController{
 		httpServletRequest.getSession().setAttribute("user", user);
 		httpServletRequest.getSession().setAttribute("teacher", teacher);
 		return map;
-		
 	}
-	
+		
 	/**
 	 * 用户管理
 	 * @param baseSubSchool
@@ -83,18 +81,23 @@ public class UserController extends BaseController{
 	 */
 	@RequiresPermissions("system:user:management")
 	@RequestMapping(value="/findAll")
-	public Map<String,Object> userList(@RequestBody String info,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
-		Map<String,Object> map = new HashMap<String,Object>();
+	public TableDataInfo userList(@RequestBody String info,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
+		//Map<String,Object> map = new HashMap<String,Object>();
 		JSONObject obj = JSONObject.parseObject(info);
 		String colSname = obj.getString("colSname");
 		String colDname = obj.getString("colDname");
+		int pageNum = obj.getIntValue("pageNum");
+		int pageSize = obj.getIntValue("pageSize");
 		System.out.println(colSname);
 		System.out.println(colDname);
-		List<Teacher> teachers = teacherSerivce.findAll(colSname, colDname);
-		List<User> users = userService.findAll(colSname, colDname);
-		map.put("teachers", teachers);
-		map.put("users", users);
-		return map;	
+		System.out.println(pageNum);
+		System.out.println(pageSize);
+		//分页一般格式，先继承basecontroller，用父类的getdataTable方法，可以避免中文乱码问题
+		//分页注入的依赖是pagehelper-spring-boot-starter 不是pagehelper
+		PageHelper.startPage(pageNum, pageSize);
+		List<User> users = userService.findAll(colSname,colDname);
+		//return JSON.toJSONString(users);
+		return getDataTable(users);
 	}
 	
 	/**
@@ -102,25 +105,25 @@ public class UserController extends BaseController{
 	 */
 	
 	@RequestMapping("findBycolCode")
-	public Map<String,Object> findBycolCode(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,
+	public void findBycolCode(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,
 			@RequestBody String info){
-		Map<String,Object> map = new HashMap<String,Object>();
 		JSONObject obj = JSONObject.parseObject(info);
 		String colCode = obj.getString("colCode");
+		System.out.println(colCode);
 		User  user = userService.findBycolCode(colCode);
 		Teacher teacher = teacherSerivce.findByCode(colCode);
 		httpServletRequest.getSession().setAttribute("userBycolCode", user);
 		httpServletRequest.getSession().setAttribute("teacherBycolCode", teacher);
-		map.put("users", user);
-		map.put("teachers", teacher);
-		return map;
+		System.out.println(user);
+		System.out.println(teacher);
 	}
 	/**
 	 * 显示用户基本信息
 	 * @param httpServletRequest
 	 * @param httpServletResponse
 	 * @return
-	 
+	 */
+	@RequestMapping("userView")
 	public Map<String,Object> userView(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse){
 		Map<String,Object> map = new HashMap<String,Object>();
 		User user = (User) httpServletRequest.getSession().getAttribute("userBycolCode");
@@ -128,7 +131,7 @@ public class UserController extends BaseController{
 		map.put("users", user);
 		map.put("teachers", teacher);
 		return map;
-	}*/
+	}
 	
 	@RequiresPermissions("system:user:updateButton")
 	@RequestMapping("updateButton")

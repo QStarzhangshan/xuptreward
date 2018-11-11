@@ -47,9 +47,11 @@ public class SchoolController {
 		if(user.getColRank()==4) {
 			schools = schoolService.findAll();
 			map.put("schools", schools);
+			map.put("user", user);	
 		}else {
 			schools = schoolService.findOne(teacher.getColSchool());
 			map.put("schools", schools);
+			map.put("user", user);
 		}
 		return map;
 	}

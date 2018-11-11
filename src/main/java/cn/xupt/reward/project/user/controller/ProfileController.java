@@ -26,7 +26,6 @@ import cn.xupt.reward.util.Md5Util;
  *
  */
 @RestController
-@RequestMapping("/proFile")
 public class ProfileController {
 
 	@Autowired
@@ -45,16 +44,17 @@ public class ProfileController {
 	@RequestMapping("updatePasswd")
 	public Message updatePasswd(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,
 			@RequestBody String info) throws NoSuchAlgorithmException {
-		User user = (User) httpServletRequest.getSession().getAttribute("user");
-		Long colId = user.getColId();
+		//User user = (User) httpServletRequest.getSession().getAttribute("user");
+		//Long colId = user.getColId();
 		JSONObject obj = JSONObject.parseObject(info);
+		Long colId = obj.getLong("colId");
 		String oldPasswd = Md5Util.md5(obj.getString("oldPasswd"));
 		String newPasswd = Md5Util.md5(obj.getString("newPasswd"));
 		String newPasswd1 = Md5Util.md5(obj.getString("newPasswd1"));
-		String passwd = (String) httpServletRequest.getSession().getAttribute("passwd");
-		if(!passwd.equals(oldPasswd)) {
+		//String passwd = (String) httpServletRequest.getSession().getAttribute("passwd");
+		/*if(!passwd.equals(oldPasswd)) {
 			return Message.error(1, "原密码错误");
-		}else if(!newPasswd.equals(newPasswd1)) {
+		}else*/ if(!newPasswd.equals(newPasswd1)) {
 			return Message.error(2, "新密码不一致");
 		}else if(oldPasswd==null||oldPasswd=="") {
 			return Message.error(3, "原密码不能为空");
@@ -74,17 +74,23 @@ public class ProfileController {
 	 */
 	@RequestMapping("fillInfo")
 	public Message fillInfo(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,
-			@RequestBody User user) {
-		user = (User) httpServletRequest.getSession().getAttribute("user");
-		if(!user.getColIdcard().matches(UserConstants.ID_CARD_NUMBER_PATTERN)) {
+			@RequestBody String info) {
+		JSONObject obj = JSONObject.parseObject(info);
+		User user1 = (User) httpServletRequest.getSession().getAttribute("user");
+		String colEmail = obj.getString("colEmail");
+		String colBankcard = obj.getString("colBankcard");
+		String colIdcard = obj.getString("colIdcard");
+		String colTelephone = obj.getString("colTelephone");
+		Long userId = user1.getColId();
+		if(!colIdcard.matches(UserConstants.ID_CARD_NUMBER_PATTERN)) {
 			return Message.error(5, "身份证号格式错误");
-		}else if(!user.getColBankcard().matches(UserConstants.BANK_CARD_NUMBER_PATTERN)) {
+		}else if(!colBankcard.matches(UserConstants.BANK_CARD_NUMBER_PATTERN)) {
 			return Message.error(6, "银行卡格式错误");
-		}else if(!user.getColEmail().matches(UserConstants.EMAIL_PATTERN)) {
+		}else if(!colEmail.matches(UserConstants.EMAIL_PATTERN)) {
 			return Message.error(7, "邮箱格式错误");
-		}else if(!user.getColTelephone().matches(UserConstants.MOBILE_PHONE_NUMBER_PATTERN)) {
+		}else if(!colTelephone.matches(UserConstants.MOBILE_PHONE_NUMBER_PATTERN)) {
 			return Message.error(8, "手机号格式错误");
-		}else if(userService.fillInfo(user)>0) {
+		}else if(userService.fillInfo(colEmail,colBankcard,colIdcard,colTelephone,userId)>0) {
 			return Message.success("修改信息成功");
 		}else {
 			return Message.error();
@@ -101,6 +107,9 @@ public class ProfileController {
 		JSONObject obj = JSONObject.parseObject(info);
 		String colCode = obj.getString("colCode");
 		String to = userService.findEmail(colCode);
+		System.out.println(colCode);
+		System.out.println(to);
+		System.out.println(userService.findEmail(colCode));
 		String content="<html>\n" +
                 "<body>\n" +
                 "    <a href=\"http://47.93.103.22/RuoYi\">重置密码</a>\n" +

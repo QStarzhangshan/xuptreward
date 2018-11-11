@@ -2,6 +2,8 @@ package cn.xupt.reward.project.user.service;
 
 import java.util.List;
 
+import com.github.pagehelper.PageInfo;
+
 import cn.xupt.reward.project.user.domain.User;
 
 public interface UserService {
@@ -24,7 +26,7 @@ public interface UserService {
 
 	public void updatePasswd(Long colId, String newPasswd);
 
-	public int fillInfo(User user);
+	public int fillInfo(String colEmail,String colBankcard,String colIdcard,String colTelephone,Long userId);
 
 	public String findEmail(String colCode);
 
