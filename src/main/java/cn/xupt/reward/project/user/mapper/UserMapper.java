@@ -1,6 +1,7 @@
 package cn.xupt.reward.project.user.mapper;
 
 import java.util.List;
+import java.util.Set;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -36,5 +37,7 @@ public interface UserMapper {
 	public String findEmail(@Param("colCode") String colCode);
 
 	public int initPasswd(User user);
+
+	public Set<User> selectperm(@Param("colCode") String colCode);
 
 }

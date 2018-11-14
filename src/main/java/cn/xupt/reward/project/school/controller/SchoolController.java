@@ -44,7 +44,7 @@ public class SchoolController {
 		Teacher teacher = teacherService.findByCode(user.getColCode());
 		Map<String,Object> map = new HashMap<String,Object>();
 		List<BaseSchool> schools = null;
-		if(user.getColRank()==4) {
+		if(user.getColRank()==4||user.getColRank()==1) {
 			schools = schoolService.findAll();
 			map.put("schools", schools);
 			map.put("user", user);	

@@ -2,6 +2,7 @@ package cn.xupt.reward.project.user.service.impl;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -98,5 +99,10 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public int initPasswd(User user) {
 		return userMapper.initPasswd(user);
+	}
+
+	@Override
+	public Set<User> selectperm(String colCode) {
+		return userMapper.selectperm(colCode);
 	}
 }

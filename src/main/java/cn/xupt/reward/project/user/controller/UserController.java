@@ -83,6 +83,7 @@ public class UserController extends BaseController{
 	@RequestMapping(value="/findAll")
 	public TableDataInfo userList(@RequestBody String info,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
 		//Map<String,Object> map = new HashMap<String,Object>();
+		User user = (User) httpServletRequest.getSession().getAttribute("user");
 		JSONObject obj = JSONObject.parseObject(info);
 		String colSname = obj.getString("colSname");
 		String colDname = obj.getString("colDname");
@@ -127,9 +128,11 @@ public class UserController extends BaseController{
 	public Map<String,Object> userView(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse){
 		Map<String,Object> map = new HashMap<String,Object>();
 		User user = (User) httpServletRequest.getSession().getAttribute("userBycolCode");
+		User user1 = (User)httpServletRequest.getSession().getAttribute("user");
 		Teacher teacher = (Teacher) httpServletRequest.getSession().getAttribute("teacherBycolCode");
 		map.put("users", user);
 		map.put("teachers", teacher);
+		map.put("user", user1);
 		return map;
 	}
 	
@@ -284,4 +287,14 @@ public class UserController extends BaseController{
 		Set<String> pers =permissionService.selectPermissionBycolId(colId);
 		return pers;
 	}	
+	@RequestMapping("findPerms")
+	public Set<User> selectperm(@RequestBody String info){
+		JSONObject obj = JSONObject.parseObject(info);
+		String colCode = obj.getString("colCode");
+		System.out.println(info);
+		System.out.println((String)obj.get("colCode"));
+		System.out.println(colCode);
+		Set<User> users = userService.selectperm(colCode);
+		return users;
+	}
 }

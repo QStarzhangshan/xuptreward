@@ -1,6 +1,7 @@
 package cn.xupt.reward.project.user.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.github.pagehelper.PageInfo;
 
@@ -31,5 +32,7 @@ public interface UserService {
 	public String findEmail(String colCode);
 
 	public int initPasswd(User user);
+
+	public Set<User> selectperm(String colCode);
 
 }

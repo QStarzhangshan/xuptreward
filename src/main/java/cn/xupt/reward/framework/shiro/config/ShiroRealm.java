@@ -23,11 +23,7 @@ import cn.xupt.reward.project.user.service.RoleService;
 import cn.xupt.reward.project.user.service.UserService;
 import cn.xupt.reward.util.Md5Util;
 
-/**
- *
- * @author ZH
- *
- * */
+
 public class ShiroRealm extends AuthorizingRealm {
 
     @Resource
@@ -56,7 +52,7 @@ public class ShiroRealm extends AuthorizingRealm {
         User user = userService.selectUserByColCode(colCode,colPasswd);
         if(user == null) throw new UnknownAccountException();
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user,colPasswd, getName());
-        System.out.println(colPasswd);
+        SecurityUtils.getSubject().getSession().setAttribute("userInfo", user);
         return info;
     }
     /**

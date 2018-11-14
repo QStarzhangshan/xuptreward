@@ -1,16 +1,20 @@
 package cn.xupt.reward.project.user.domain;
 
+import java.util.Set;
+
 public class Role {
 	
-	private Long colId;
+	private Long colRid;
 	private String colRank;
 	private String colRankname;
 	private String colRemark;
-	public Long getColId() {
-		return colId;
+	private Set<Permission> permissions;
+
+	public Long getColRid() {
+		return colRid;
 	}
-	public void setColId(Long colId) {
-		this.colId = colId;
+	public void setColRid(Long colRid) {
+		this.colRid = colRid;
 	}
 	public String getColRank() {
 		return colRank;
@@ -30,11 +34,20 @@ public class Role {
 	public void setColRemark(String colRemark) {
 		this.colRemark = colRemark;
 	}
+	
+	public Set<Permission> getPermissions() {
+		return permissions;
+	}
+	public void setPermissions(Set<Permission> permissions) {
+		this.permissions = permissions;
+	}
 	@Override
 	public String toString() {
-		return "Role [colId=" + colId + ", colRank=" + colRank + ", colRankname=" + colRankname + ", colRemark="
-				+ colRemark + "]";
+		return "Role [colRid=" + colRid + ", colRank=" + colRank + ", colRankname=" + colRankname + ", colRemark="
+				+ colRemark + ", permissions=" + permissions + "]";
 	}
+
+
 	
 	
 }

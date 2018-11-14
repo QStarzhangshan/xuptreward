@@ -1,9 +1,10 @@
 package cn.xupt.reward.project.user.domain;
 
-import cn.xupt.reward.framework.web.domain.BaseEntity;
-
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Set;
+
+import cn.xupt.reward.framework.web.domain.BaseEntity;
 
 
 public class User extends BaseEntity{
@@ -31,6 +32,7 @@ public class User extends BaseEntity{
     private String colImg;
     private Long colViewRole;
     private String colPasstime;
+    private Set<Role> roles;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -39,6 +41,17 @@ public class User extends BaseEntity{
     
     public String getColIdcard() {
 		return colIdcard;
+	}
+
+    
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 
@@ -228,7 +241,10 @@ public class User extends BaseEntity{
 				+ ", colIdcard=" + colIdcard + ", colBankcard=" + colBankcard + ", colRole=" + colRole + ", colRank="
 				+ colRank + ", colTemp=" + colTemp + ", colTime=" + colTime + ", colNote=" + colNote + ", colPinyin="
 				+ colPinyin + ", colPinyinf=" + colPinyinf + ", colImg=" + colImg + ", colViewRole=" + colViewRole
-				+ ", colPasstime=" + colPasstime + "]";
+				+ ", colPasstime=" + colPasstime + ", roles=" + roles + "]";
 	}
+
+
+    
 
 }

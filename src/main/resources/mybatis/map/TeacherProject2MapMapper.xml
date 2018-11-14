@@ -2,141 +2,79 @@
 <!DOCTYPE mapper
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.xupt.reward.project.user.mapper.UserMapper">
-	<resultMap type="User" id="UserResult">
+<mapper namespace="cn.xupt.reward.project.map.mapper.TeacherProject2MapMapper">
+	<resultMap type="TeacherProject2Map" id="TeacherProject2MapResult">
 		<id     property="colId"       column="col_id"      />
 		<result property="colCode"       column="col_code"      />
-		<result property="colName"    column="col_name"   />
-		<result property="colPasswd"     column="col_passwd"    />
-		<result property="colSex"        column="col_sex"        />
-		<result property="colEducation"  column="col_education"  />
-		<result property="colEntryDate"          column="col_entry_date"          />
-		<result property="colLeavetime"       column="col_leavetime"       />
-		<result property="colEmail"     column="col_email"     />
-		<result property="colTelephone"         column="col_telephone"         />
-		<result property="colIdcard"         column="col_idcard"         />
-		<result property="colBankcard"         column="col_bankcard"         />
-		<result property="colRole"     column="col_role"    />
-		<result property="colRank"       column="col_rank"       />
-		<result property="colTemp"    column="col_temp"   />
-		<result property="colTime"      column="col_time"     />
+		<result property="colPnum"    column="col_pnum"   />
+		<result property="colPname"    column="col_pname"   />
+		<result property="colPtype"    column="col_ptype"   />
+		<result property="colPsubtype"    column="col_psubtype"   />
+		<result property="colMtype"    column="col_mtype"   />
+		<result property="colContent"    column="col_content"   />
+		<result property="colPmoney"    column="col_pmoney"   />
+		<result property="colPecent"    column="col_pecent"   />
+		<result property="colSign"    column="col_sign"   />
+		<result property="colFac"    column="col_fac"   />
+		<result property="colMdate"    column="col_mdate"   />
+		<result property="colMoney1"    column="col_money1"   />
+		<result property="colTime1"    column="col_time1"   />
+		<result property="colXupt1"    column="col_xupt1"   />
+		<result property="colMoney2"    column="col_money2"   />
+		<result property="colTime2"    column="col_time2"   />
+		<result property="colXupt2"    column="col_xupt2"   />
+		<result property="colMoney3"    column="col_money3"   />
+		<result property="colTime3"    column="col_time3"   />
+		<result property="colXupt3"    column="col_xupt3"   />
+		<result property="colIdentifytype"    column="col_identifytype"   />
+		<result property="colSummary"    column="col_summary"   />
+		<result property="colInnovation"    column="col_innovation"   />
+		<result property="colExpected"    column="col_expected"   />
+		<result property="colTarget"    column="col_target"   />
+		<result property="colTextent"    column="col_textent"   />
+		<result property="colSchedule"    column="col_schedule"   />
+		<result property="colMember"    column="col_member"   />
+		<result property="colBdate"    column="col_bdate"   />
+		<result property="colEdate"    column="col_edate"   />
+		<result property="colUorder"    column="col_uorder"   />
+		<result property="colAuthorlist"    column="col_authorlist"   />
+		<result property="colFactor"    column="col_factor"   />
+		<result property="colUnitlist"    column="col_unitlist"   />
+		<result property="colNumber"    column="col_number"   />
+		<result property="colOrder"    column="col_order"   />
+		<result property="colXiaoneinumber"    column="col_xiaoneinumber"   />
+		<result property="colXiaoneiorder"    column="col_xiaoneiorder"   />
+		<result property="colDate"    column="col_date"   />
+		<result property="colTtime"    column="col_ttime"   />
+		<result property="colAuditor1"    column="col_auditor1"   />
+		<result property="colDepartment1"    column="col_department1"   />
+		<result property="colAtime1"    column="col_atime1"   />
+		<result property="colStatus1"    column="col_status1"   />
+		<result property="colAtxt1"    column="col_atxt1"   />
+		<result property="colAuditor2"    column="col_auditor2"   />
+		<result property="colDepartment2"    column="col_department2"   />
+		<result property="colAtime2"    column="col_atime2"   />
+		<result property="colStatus2"    column="col_status2"   />
+		<result property="colAtxt2"    column="col_atxt2"   />
+		<result property="colAuditor3"    column="col_auditor3"   />
+		<result property="colDepartment3"    column="col_department3"   />
+		<result property="colAtime3"    column="col_atime3"   />
+		<result property="colStatus3"    column="col_status3"   />
+		<result property="colAtxt3"    column="col_atxt3"   />
+		<result property="colEvidence"    column="col_evidence"   />
+		<result property="colImageurl"    column="col_imageurl"   />
+		<result property="colMoney"    column="col_money"   />
 		<result property="colNote"    column="col_note"   />
-		<result property="colPinyin"     column="col_pinyin"    />
-		<result property="colPinyinf"   column="col_pinyinf"  />
-		<result property="colImg"     column="col_img"    />
-		<result property="colViewRole"     column="col_view_role"    />
-		<result property="colPasstime"     column="col_passtime"    />
-		<collection property="roles" ofType="cn.xupt.reward.project.user.domain.Role">
-			<id property="colRid" column="col_rid"/>
-			<result property="colRank" column="col_rank"/>
-			<result property="colRankname" column="col_rankname"/>
-			<result property="colRemark" column="col_remark"/>
-			<collection property="permissions" ofType="cn.xupt.reward.project.user.domain.Permission">
-				<id property="colPid" column="col_pid"/>
-				<result property="colPermissionname" column="col_permissionname"/>
-				<result property="colPermission" column="col_permission"/>
-			</collection>
-		</collection>
+		
 	</resultMap>
 	
-	<select id="selectperm" resultMap="UserResult">
-		select u.*,r.*,p.*
-		from base_users u 
-		left join base_users_role ur on u.col_id = ur.users_id
-		left join base_role r on ur.role_id = r.col_rid
-		left join base_role_permission rp on r.col_rid = rp.role_id
-		left join base_permission p on rp.permission_id = p.col_pid
+	<select id="listAll" resultMap="TeacherProject2MapResult">
+		select * from teacher_project2_map 
 		where 1=1
-		<if test="colCode != null and colCode != ''">and u.col_code = #{colCode}</if>
+		<if test="colStatus1!=null and colStatus1!=''">and col_status1 = #{colStatus1}</if>
 	</select>
 	
-	<select id="selectUserByColCode" resultMap="UserResult">
-		select  *
-		from base_users u
-		where u.col_code = #{colCode} and u.col_passwd = #{colPasswd}
-	</select>
-
-	<select id="selectColRole" parameterType="String" resultType="Long">
-		select col_role  from base_users where col_code=#{colCode}
-	</select>
 	
-	<select id="findBycolCode" parameterType="String" resultMap="UserResult">
-		select * from base_users where col_code=#{colCode}
-	</select>
-	
-	<select id="findAll" parameterType="String" resultMap="UserResult">
-		select u.* 
-		from base_users u
-		left join base_teacher t on u.col_code = t.col_code
-		where 1=1
-		<if test="colSname != null and colSname != ''">and t.col_school=#{colSname}</if>
-		<if test="colDname != null and colDname != ''">and t.col_department=#{colDname}</if>
-		group by u.col_code
-	</select>
-	
-	<select id="checkColCode" parameterType="String" resultType="int">
-		select count(*) from base_users where col_code=#{colCode}
-	</select>
-	
-	<insert id="insertUser" parameterType="User" >
-		INSERT INTO base_users(
-		col_id,col_code,col_name,col_passwd,col_sex,col_education,col_entry_date,col_leavetime,col_email,col_telephone,col_role,col_rank,
-		col_temp,col_time,col_note,col_pinyin,col_pinyinf,col_img,col_view_role,col_passtime
-		) VALUES (
-		#{colId},#{colCode},#{colName},#{colPasswd},#{colSex},#{colEducation},#{colEntryDate},#{colLeavetime},#{colEmail},
-		#{colTelephone},#{colRole},#{colRank},#{colTemp},#{colTime},#{colNote},#{colPinyin},#{colPinyinf},#{colImg},
-		#{colViewRole},#{colPasstime}
-		)
-	</insert>
-	
-	<update id="updateUserRank" parameterType="User">
-		update base_users 
-		<set>
-			<if test="colRank!=null and colRank!=''">col_rank=#{colRank}</if>
-		</set> 
-		where 1=1
- 		<if test="colCode != null and colCode  != ''">and col_code = #{colCode}</if>
-	</update>
-	
-	<delete id="deleteBycolId" parameterType="User">
- 		delete from base_users where col_id = #{colId}
- 	</delete>
- 	
- 	<update id="updatePasswd">
- 		update base_users 
- 		<set>
- 			<if test="newPasswd!=null and newPasswd!=''">col_passwd=#{newPasswd}</if>
- 		</set>
- 		where 1=1
- 		<if test="colId != null and colId  != ''">and col_id = #{colId}</if>
- 	</update>
-	
-	<update id="fillInfo" parameterType="User">
-		update base_users
-		<set>
-			<if test="colEmail!=null and colEmail!=''">col_email=#{colEmail},</if>
-			<if test="colTelephone!=null and colTelephone!=''">col_telephone=#{colTelephone},</if>
-			<if test="colIdcard!=null and colIdcard!=''">col_idcard=#{colIdcard},</if>
-			<if test="colBankcard!=null and colBankcard!=''">col_bankcard=#{colBankcard}</if>
-		</set>
-		where 1=1
- 		<if test="userId != null and userId  != ''">and col_id = #{userId}</if>
-	</update>
-	
-	<select id="findEmail" resultType="String">
-		select u.col_email from base_users u 
-		where 1=1 
-		<if test="colCode!=null and colCode!=''">and col_code=#{colCode}</if>	
-	</select>
-	
-	<update id="initPasswd" parameterType="User">
-		update base_users 
-		<set>
-			<if test="!colPasswd=null and !colPasswd=''">col_passwd=#{colPasswd}</if>
-		</set>
-		where 1=1
-		<if test="!colCode=null and !colCode=''">and col_code=#{colCode}</if>
-	</update>
 	<!--<select id="selectUserByPhoneNumber" parameterType="String" resultMap="UserResult">-->
 		<!--select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email, u.phonenumber, u.sex, u.avatar, u.password, u.salt, u.status, u.refuse_des, u.login_ip, u.login_date, u.create_time,-->
        		    <!--d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status-->

@@ -1,14 +1,15 @@
 package cn.xupt.reward.project.user.domain;
 
 public class Permission {
-	private Long colId;
+	private Long colPid;
 	private String colPermissionname;
 	private String colPermission;
-	public Long getColId() {
-		return colId;
+
+	public Long getColPid() {
+		return colPid;
 	}
-	public void setColId(Long colId) {
-		this.colId = colId;
+	public void setColPid(Long colPid) {
+		this.colPid = colPid;
 	}
 	public String getColPermissionname() {
 		return colPermissionname;
@@ -24,9 +25,10 @@ public class Permission {
 	}
 	@Override
 	public String toString() {
-		return "Permission [colId=" + colId + ", colPermissionname=" + colPermissionname + ", colPermission="
+		return "Permission [colPid=" + colPid + ", colPermissionname=" + colPermissionname + ", colPermission="
 				+ colPermission + "]";
 	}
+
 	
 	
 }

@@ -1,9 +1,11 @@
 package cn.xupt.reward.project.map.domain;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.Date;
 
-public class TeacherProject2Map {
+import cn.xupt.reward.framework.web.domain.BaseEntity;
+
+public class TeacherProject2Map{
 	private long colId;
 	private String colCode;
 	private String colPnum;
