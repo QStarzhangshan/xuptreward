@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
@@ -31,6 +32,7 @@ import cn.xupt.reward.framework.web.domain.Message;
 import cn.xupt.reward.project.user.domain.Teacher;
 import cn.xupt.reward.project.user.domain.User;
 import cn.xupt.reward.project.user.service.TeacherService;
+import cn.xupt.reward.project.user.service.UserMenuService;
 import cn.xupt.reward.project.user.service.UserService;
 
 
@@ -45,14 +47,17 @@ public class LoginController extends BaseController{
     
     @Autowired
 	private DefaultKaptcha defaultKaptcha;
+    @Autowired
+    private UserMenuService userMenuService;
 
     @PostMapping(value="/getlogin")
     @ResponseBody
-    public Message login(
+    public Map<String,Object> login(
     		@RequestBody User user,
     		@RequestBody String v,
     		HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse
     ) {
+    	Map<String,Object> map = new HashMap<String,Object>();
     	String captchaId = (String) httpServletRequest.getSession().getAttribute("vrifyCode");  
     	//v是json数组，拆分json，取属性名，拿到value
     	JSONObject obj = JSONObject.parseObject(v);
@@ -64,12 +69,14 @@ public class LoginController extends BaseController{
         System.out.println(httpServletRequest.getRequestedSessionId());
         Subject subject = SecurityUtils.getSubject();
         if(!vrifyCode.equals(captchaId)) {
-        	return Message.error(2, "验证码错误");
+        	map.put("code", 1);
+        	return map;
         }else{
         try
         {
         	subject.login(token);
-            return Message.success("登陆成功");//code为0
+        	map.put("code", 0);
+        	return map;
         }
         catch (AuthenticationException e)
         {
@@ -78,11 +85,29 @@ public class LoginController extends BaseController{
             {
             	msg = e.getMessage(); 
             }
-            return Message.error(msg);
+            map.put("code", 2);
+            return map;
         }
     }
     }
-	
+
+    /**
+     * 返回用户菜单
+     * @param info
+     * @return
+     */
+	@RequestMapping("/getInfo")
+	@ResponseBody
+	public User selectperm(){
+		System.out.println("------------------------------------");
+		User user = (User)SecurityUtils.getSubject().getSession().getAttribute("userInfo");
+		String colCode = user.getColCode();
+		System.out.println(user.getColCode());
+		User users = userMenuService.selectperm(colCode);
+		return users;
+	}
+    
+    
     /**
      * 退出登陆 页面需要转到登陆页面
      * @return
@@ -95,6 +120,8 @@ public class LoginController extends BaseController{
     	currentUser.logout();
     	return Message.success("退出登陆成功");
     }
+    
+
     
     /**
      * 验证码

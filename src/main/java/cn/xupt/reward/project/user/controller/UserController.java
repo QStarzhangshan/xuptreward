@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 
@@ -31,6 +30,7 @@ import cn.xupt.reward.project.user.domain.User;
 import cn.xupt.reward.project.user.domain.UserRole;
 import cn.xupt.reward.project.user.service.PermissionService;
 import cn.xupt.reward.project.user.service.TeacherService;
+import cn.xupt.reward.project.user.service.UserMenuService;
 import cn.xupt.reward.project.user.service.UserRoleService;
 import cn.xupt.reward.project.user.service.UserService;
 import cn.xupt.reward.util.Md5Util;
@@ -48,6 +48,8 @@ public class UserController extends BaseController{
 	private PermissionService permissionService;
 	@Autowired
 	private UserRoleService userroleService;
+	@Autowired
+	private UserMenuService userMenuService;
 	
 	/**
 	 * 主页面,识别身份
@@ -288,13 +290,15 @@ public class UserController extends BaseController{
 		return pers;
 	}	
 	@RequestMapping("findPerms")
-	public Set<User> selectperm(@RequestBody String info){
+	public User selectperm(@RequestBody String info){
 		JSONObject obj = JSONObject.parseObject(info);
 		String colCode = obj.getString("colCode");
 		System.out.println(info);
 		System.out.println((String)obj.get("colCode"));
 		System.out.println(colCode);
-		Set<User> users = userService.selectperm(colCode);
+		User users = userMenuService.selectperm(colCode);
+		//String str = JSONObject.toJSONString(users);
+		//JSONObject jsonObject = JSONObject.parseObject(str);
 		return users;
 	}
 }

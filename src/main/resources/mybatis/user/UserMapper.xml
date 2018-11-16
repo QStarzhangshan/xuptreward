@@ -26,29 +26,9 @@
 		<result property="colImg"     column="col_img"    />
 		<result property="colViewRole"     column="col_view_role"    />
 		<result property="colPasstime"     column="col_passtime"    />
-		<collection property="roles" ofType="cn.xupt.reward.project.user.domain.Role">
-			<id property="colRid" column="col_rid"/>
-			<result property="colRank" column="col_rank"/>
-			<result property="colRankname" column="col_rankname"/>
-			<result property="colRemark" column="col_remark"/>
-			<collection property="permissions" ofType="cn.xupt.reward.project.user.domain.Permission">
-				<id property="colPid" column="col_pid"/>
-				<result property="colPermissionname" column="col_permissionname"/>
-				<result property="colPermission" column="col_permission"/>
-			</collection>
-		</collection>
 	</resultMap>
 	
-	<select id="selectperm" resultMap="UserResult">
-		select u.*,r.*,p.*
-		from base_users u 
-		left join base_users_role ur on u.col_id = ur.users_id
-		left join base_role r on ur.role_id = r.col_rid
-		left join base_role_permission rp on r.col_rid = rp.role_id
-		left join base_permission p on rp.permission_id = p.col_pid
-		where 1=1
-		<if test="colCode != null and colCode != ''">and u.col_code = #{colCode}</if>
-	</select>
+
 	
 	<select id="selectUserByColCode" resultMap="UserResult">
 		select  *

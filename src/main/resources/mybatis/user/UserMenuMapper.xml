@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xupt.reward.project.user.mapper.UserMenuMapper">
+	<resultMap type="User" id="UserMenuResult">
+		<id     property="colId"       column="col_id"      />
+		<result property="colCode"       column="col_code"      />
+		<result property="colName"    column="col_name"   />
+		<result property="colPasswd"     column="col_passwd"    />
+		<result property="colSex"        column="col_sex"        />
+		<result property="colEducation"  column="col_education"  />
+		<result property="colEntryDate"          column="col_entry_date"          />
+		<result property="colLeavetime"       column="col_leavetime"       />
+		<result property="colEmail"     column="col_email"     />
+		<result property="colTelephone"         column="col_telephone"         />
+		<result property="colIdcard"         column="col_idcard"         />
+		<result property="colBankcard"         column="col_bankcard"         />
+		<result property="colRole"     column="col_role"    />
+		<result property="colRank"       column="col_rank"       />
+		<result property="colTemp"    column="col_temp"   />
+		<result property="colTime"      column="col_time"     />
+		<result property="colNote"    column="col_note"   />
+		<result property="colPinyin"     column="col_pinyin"    />
+		<result property="colPinyinf"   column="col_pinyinf"  />
+		<result property="colImg"     column="col_img"    />
+		<result property="colViewRole"     column="col_view_role"    />
+		<result property="colPasstime"     column="col_passtime"    />
+		<association property="roles" javaType="Role">
+			<id property="colRankname" column="col_rankname"/>
+			<collection property="permissions" ofType="String">
+				<id property="colPermission" column="col_permission"/>
+			</collection>
+			<collection property="menus" ofType="String">
+				<id property="colMenulist" column="col_menulist"/>
+			</collection>
+		</association>
+	</resultMap>
+	
+	<select id="selectperm" resultMap="UserMenuResult">
+		select u.col_id,
+		u.col_name,
+		u.col_rank,
+		r.col_rankname,
+		p.col_permission,
+		p.col_menulist
+		from base_users u 
+		left join base_users_role ur on u.col_id = ur.users_id
+		left join base_role r on ur.role_id = r.col_rid
+		left join base_role_permission rp on r.col_rid = rp.role_id
+		left join base_permission p on rp.permission_id = p.col_pid
+		where 1=1
+		<if test="colCode != null and colCode != ''">and u.col_code = #{colCode}</if>
+	</select>
+	
+	
+	</mapper>
