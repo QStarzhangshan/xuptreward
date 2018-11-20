@@ -11,4 +11,8 @@ public interface TeacherProject2MapService{
 	List<TeacherProject2Map> listAll(String colTtime, String colSname, String colType, String colSubtype,
 			String colStatus1, String colStatus2, String colStatus3);
 
+	TeacherProject2Map findBycolId(int colId);
+
+	int checkPnum(String colPnum);
+
 }

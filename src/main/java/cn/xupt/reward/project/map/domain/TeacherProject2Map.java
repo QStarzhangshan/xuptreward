@@ -3,7 +3,7 @@ package cn.xupt.reward.project.map.domain;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import cn.xupt.reward.framework.web.domain.BaseEntity;
+import cn.xupt.reward.project.user.domain.User;
 
 public class TeacherProject2Map{
 	private long colId;
@@ -67,6 +67,22 @@ public class TeacherProject2Map{
 	private String colImageurl;
 	private String colMoney;
 	private String colNote;
+	private String user;
+	private String school;
+
+	
+	public String getSchool() {
+		return school;
+	}
+	public void setSchool(String school) {
+		this.school = school;
+	}
+	public String getUser() {
+		return user;
+	}
+	public void setUser(String user) {
+		this.user = user;
+	}
 	public long getColId() {
 		return colId;
 	}
@@ -453,11 +469,8 @@ public class TeacherProject2Map{
 				+ ", colAtime2=" + colAtime2 + ", colStatus2=" + colStatus2 + ", colAtxt2=" + colAtxt2
 				+ ", colAuditor3=" + colAuditor3 + ", colDepartment3=" + colDepartment3 + ", colAtime3=" + colAtime3
 				+ ", colStatus3=" + colStatus3 + ", colAtxt3=" + colAtxt3 + ", colEvidence=" + colEvidence
-				+ ", colImageurl=" + colImageurl + ", colMoney=" + colMoney + ", colNote=" + colNote + "]";
+				+ ", colImageurl=" + colImageurl + ", colMoney=" + colMoney + ", colNote=" + colNote + ", user=" + user
+				+ ", school=" + school + "]";
 	}
-	
-	
-	
-	
-	
+
 }

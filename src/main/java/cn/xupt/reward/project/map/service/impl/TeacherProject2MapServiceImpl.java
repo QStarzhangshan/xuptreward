@@ -25,4 +25,14 @@ public class TeacherProject2MapServiceImpl implements TeacherProject2MapService{
 			String colStatus1, String colStatus2, String colStatus3) {
 		return teacherProject2MapMapper.listAll(colTtime,colSname,colType,colSubtype,colStatus1,colStatus2,colStatus3);
 	}
+
+	@Override
+	public TeacherProject2Map findBycolId(int colId) {
+		return teacherProject2MapMapper.findBycolId(colId);
+	}
+
+	@Override
+	public int checkPnum(String colPnum) {
+		return teacherProject2MapMapper.checkPnum(colPnum);
+	}
 }

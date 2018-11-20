@@ -65,19 +65,52 @@
 		<result property="colImageurl"    column="col_imageurl"   />
 		<result property="colMoney"    column="col_money"   />
 		<result property="colNote"    column="col_note"   />
-		
 	</resultMap>
 	
-	<select id="listAll" resultMap="TeacherProject2MapResult">
-		select * from teacher_project2_map 
+	<resultMap type="TeacherProject2Map" id="TeacherProject2MapResult2">
+		<id     property="colId"       column="col_id"      />
+		<result property="colPname"    column="col_pname"   />
+		<result property="colPtype"    column="col_ptype"   />
+		<result property="colPsubtype"    column="col_psubtype"   />
+		<result property="colTtime"    column="col_ttime"   />
+		<result property="colStatus1"    column="col_status1"   />
+		<result property="colStatus2"    column="col_status2"   />
+		<result property="colStatus3"    column="col_status3"   />
+		<association property="user" javaType="String">
+			<result property="colUser" column="col_name"/>
+		</association>
+		<association property="school" javaType="String">
+			<result property="colSchool" column="col_school"/>
+		</association>
+	</resultMap>
+	
+	<select id="listAll" resultMap="TeacherProject2MapResult2">
+		select tpm.*,
+		u.col_name,
+		t.col_school
+		from teacher_project2_map tpm
+		left join base_users u on tpm.col_code=u.col_code
+		left join base_teacher t on u.col_code = t.col_code
 		where 1=1
-		<if test="colStatus1!=null and colStatus1!=''">and col_status1 = #{colStatus1}</if>
+		<if test="colStatus3!=null and colStatus3!=''">and tpm.col_status3 = #{colStatus3}</if>
+		<if test="colStatus1!=null and colStatus1!=''">and tpm.col_status1 = #{colStatus1}</if>
+		<if test="colStatus2!=null and colStatus2!=''">and tpm.col_status2 = #{colStatus2}</if>
+		<if test="colTtime!=null and colTtime!=''">and tpm.col_ttime like CONCAT('%',#{colTtime},'%')</if>
+		<if test="colSname!=null and colSname!=''">and t.col_school = #{colSname}</if>
+		<if test="colType!=null and colType3!=''">and tpm.col_ptype = #{colType}</if>
+		<if test="colSubtype!=null and colSubtype!=''">and tpm.col_psubtype = #{colSubtype}</if>
 	</select>
 	
+	<select id="checkPnum" parameterType="String" resultType="int">
+		select count(*) 
+		from teacher_project2_map 
+		where 1=1
+		<if test="colPnum!=null and colPnum!=''">and col_pnum=#{colPnum}</if>
+	</select>
 	
 	<!--<select id="selectUserByPhoneNumber" parameterType="String" resultMap="UserResult">-->
 		<!--select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email, u.phonenumber, u.sex, u.avatar, u.password, u.salt, u.status, u.refuse_des, u.login_ip, u.login_date, u.create_time,-->
-       		    <!--d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status-->
+       		    <!--d.dept_id, d.parent_id, d.dept_name, d.order_num , d.status as dept_status-->
 		<!--from sys_user u-->
 			 <!--left join sys_dept d on u.dept_id = d.dept_id-->
 			 <!--left join sys_user_role ur on u.user_id = ur.user_id-->

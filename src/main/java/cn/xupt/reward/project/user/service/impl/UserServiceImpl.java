@@ -105,4 +105,14 @@ public class UserServiceImpl implements UserService{
 	public Set<User> selectperm(String colCode) {
 		return userMapper.selectperm(colCode);
 	}
+
+	@Override
+	public List<User> findBycolName(String colName) {
+		return userMapper.findBycolName(colName);
+	}
+
+	@Override
+	public int checkcolName(String colName) {
+		return userMapper.checkcolName(colName);
+	}
 }

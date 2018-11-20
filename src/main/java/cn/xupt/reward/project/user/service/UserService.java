@@ -35,4 +35,8 @@ public interface UserService {
 
 	public Set<User> selectperm(String colCode);
 
+	public List<User> findBycolName(String colName);
+
+	public int checkcolName(String colName);
+
 }

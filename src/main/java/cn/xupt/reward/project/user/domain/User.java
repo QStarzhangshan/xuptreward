@@ -33,13 +33,22 @@ public class User extends BaseEntity{
     private Long colViewRole;
     private String colPasstime;
     private Role roles;
+    private String school;
     
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 
-    
-    public String getColIdcard() {
+
+    public String getSchool() {
+		return school;
+	}
+
+	public void setSchool(String school) {
+		this.school = school;
+	}
+
+	public String getColIdcard() {
 		return colIdcard;
 	}
 
@@ -231,6 +240,8 @@ public class User extends BaseEntity{
         this.colImg = colImg;
     }
 
+
+
 	@Override
 	public String toString() {
 		return "User [colId=" + colId + ", colCode=" + colCode + ", colName=" + colName + ", colPasswd=" + colPasswd
@@ -239,7 +250,8 @@ public class User extends BaseEntity{
 				+ ", colIdcard=" + colIdcard + ", colBankcard=" + colBankcard + ", colRole=" + colRole + ", colRank="
 				+ colRank + ", colTemp=" + colTemp + ", colTime=" + colTime + ", colNote=" + colNote + ", colPinyin="
 				+ colPinyin + ", colPinyinf=" + colPinyinf + ", colImg=" + colImg + ", colViewRole=" + colViewRole
-				+ ", colPasstime=" + colPasstime + ", roles=" + roles + "]";
+				+ ", colPasstime=" + colPasstime + ", roles=" + roles + ", school=" + school + "]";
 	}
 
+    
 }

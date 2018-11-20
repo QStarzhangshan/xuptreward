@@ -40,4 +40,8 @@ public interface UserMapper {
 
 	public Set<User> selectperm(@Param("colCode") String colCode);
 
+	public List<User> findBycolName(@Param("colName") String colName);
+
+	public int checkcolName(@Param("colName")  String colName);
+
 }

@@ -277,6 +277,36 @@ public class UserController extends BaseController{
 		}
 		return uniqueFlag;
 	}
+	/**
+	 * 检查姓名是否唯一，并筛选出来
+	 * @param info
+	 * @return
+	 */
+	@RequestMapping(value="checkcolName",method=RequestMethod.POST)
+	public Map<String,Object> checkcolName(@RequestBody String info){
+		Map<String,Object> map = new HashMap<String,Object>();
+		JSONObject obj = JSONObject.parseObject(info);
+		String colName = obj.getString("colName");
+		int uniqueFlag = userService.checkcolName(colName);
+		if(colName==null||colName=="") {
+			map.put("code", 1);
+			return map;
+		}else if(uniqueFlag==0) {
+			map.put("code", 2);
+			return map;
+		}else if(uniqueFlag==1) {
+			List<User> user = userService.findBycolName(colName);
+			map.put("code", 0);
+			map.put("userbycolname", user);
+			return map;
+		}else {
+			List<User> user = userService.findBycolName(colName);
+			map.put("code", 3);
+			map.put("userbycolname", user);
+			return map;
+		}
+		
+	}
 	
 	/**
 	 * 查询用户权限
