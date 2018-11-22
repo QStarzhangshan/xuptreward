@@ -1,7 +1,7 @@
 package cn.xupt.reward.project.map.domain;
 
-import java.sql.Timestamp;
 import java.util.Date;
+import java.sql.Timestamp;
 
 import cn.xupt.reward.project.user.domain.User;
 
@@ -18,15 +18,15 @@ public class TeacherProject2Map{
 	private String colPecent;
 	private String colSign;
 	private String colFac;
-	private Date colMdate;
+	private String colMdate;
 	private String colMoney1;
-	private Timestamp colTime1;
+	private String colTime1;
 	private String colXupt1;
 	private String colMoney2;
-	private Timestamp colTime2;
+	private String colTime2;
 	private String colXupt2;
 	private String colMoney3;
-	private Timestamp colTime3;
+	private String colTime3;
 	private String colXupt3;
 	private String colIdentifytype;
 	private String colSummary;
@@ -36,8 +36,8 @@ public class TeacherProject2Map{
 	private String colTextent;
 	private String colSchedule;
 	private String colMember;
-	private Date colBdate;
-	private Date colEdate;
+	private String colBdate;
+	private String colEdate;
 	private long colUorder;
 	private String colAuthorlist;
 	private String colFactor;
@@ -46,21 +46,21 @@ public class TeacherProject2Map{
 	private long colOrder;
 	private long colXiaoneinumber;
 	private long colXiaoneiorder;
-	private Date colDate;
-	private Date colTtime;
+	private String colDate;
+	private String colTtime;
 	private String colAuditor1;
 	private String colDepartment1;
-	private Timestamp colAtime1;
+	private String colAtime1;
 	private String colStatus1;
 	private String colAtxt1;
 	private String colAuditor2;
 	private String colDepartment2;
-	private Timestamp colAtime2;
+	private String colAtime2;
 	private String colStatus2;
 	private String colAtxt2;
 	private String colAuditor3;
 	private String colDepartment3;
-	private Timestamp colAtime3;
+	private String colAtime3;
 	private String colStatus3;
 	private String colAtxt3;
 	private String colEvidence;
@@ -69,20 +69,6 @@ public class TeacherProject2Map{
 	private String colNote;
 	private String user;
 	private String school;
-
-	
-	public String getSchool() {
-		return school;
-	}
-	public void setSchool(String school) {
-		this.school = school;
-	}
-	public String getUser() {
-		return user;
-	}
-	public void setUser(String user) {
-		this.user = user;
-	}
 	public long getColId() {
 		return colId;
 	}
@@ -155,10 +141,10 @@ public class TeacherProject2Map{
 	public void setColFac(String colFac) {
 		this.colFac = colFac;
 	}
-	public Date getColMdate() {
+	public String getColMdate() {
 		return colMdate;
 	}
-	public void setColMdate(Date colMdate) {
+	public void setColMdate(String colMdate) {
 		this.colMdate = colMdate;
 	}
 	public String getColMoney1() {
@@ -167,10 +153,10 @@ public class TeacherProject2Map{
 	public void setColMoney1(String colMoney1) {
 		this.colMoney1 = colMoney1;
 	}
-	public Timestamp getColTime1() {
+	public String getColTime1() {
 		return colTime1;
 	}
-	public void setColTime1(Timestamp colTime1) {
+	public void setColTime1(String colTime1) {
 		this.colTime1 = colTime1;
 	}
 	public String getColXupt1() {
@@ -185,10 +171,10 @@ public class TeacherProject2Map{
 	public void setColMoney2(String colMoney2) {
 		this.colMoney2 = colMoney2;
 	}
-	public Timestamp getColTime2() {
+	public String getColTime2() {
 		return colTime2;
 	}
-	public void setColTime2(Timestamp colTime2) {
+	public void setColTime2(String colTime2) {
 		this.colTime2 = colTime2;
 	}
 	public String getColXupt2() {
@@ -203,10 +189,10 @@ public class TeacherProject2Map{
 	public void setColMoney3(String colMoney3) {
 		this.colMoney3 = colMoney3;
 	}
-	public Timestamp getColTime3() {
+	public String getColTime3() {
 		return colTime3;
 	}
-	public void setColTime3(Timestamp colTime3) {
+	public void setColTime3(String colTime3) {
 		this.colTime3 = colTime3;
 	}
 	public String getColXupt3() {
@@ -263,16 +249,16 @@ public class TeacherProject2Map{
 	public void setColMember(String colMember) {
 		this.colMember = colMember;
 	}
-	public Date getColBdate() {
+	public String getColBdate() {
 		return colBdate;
 	}
-	public void setColBdate(Date colBdate) {
+	public void setColBdate(String colBdate) {
 		this.colBdate = colBdate;
 	}
-	public Date getColEdate() {
+	public String getColEdate() {
 		return colEdate;
 	}
-	public void setColEdate(Date colEdate) {
+	public void setColEdate(String colEdate) {
 		this.colEdate = colEdate;
 	}
 	public long getColUorder() {
@@ -323,16 +309,16 @@ public class TeacherProject2Map{
 	public void setColXiaoneiorder(long colXiaoneiorder) {
 		this.colXiaoneiorder = colXiaoneiorder;
 	}
-	public Date getColDate() {
+	public String getColDate() {
 		return colDate;
 	}
-	public void setColDate(Date colDate) {
+	public void setColDate(String colDate) {
 		this.colDate = colDate;
 	}
-	public Date getColTtime() {
+	public String getColTtime() {
 		return colTtime;
 	}
-	public void setColTtime(Date colTtime) {
+	public void setColTtime(String colTtime) {
 		this.colTtime = colTtime;
 	}
 	public String getColAuditor1() {
@@ -347,10 +333,10 @@ public class TeacherProject2Map{
 	public void setColDepartment1(String colDepartment1) {
 		this.colDepartment1 = colDepartment1;
 	}
-	public Timestamp getColAtime1() {
+	public String getColAtime1() {
 		return colAtime1;
 	}
-	public void setColAtime1(Timestamp colAtime1) {
+	public void setColAtime1(String colAtime1) {
 		this.colAtime1 = colAtime1;
 	}
 	public String getColStatus1() {
@@ -377,10 +363,10 @@ public class TeacherProject2Map{
 	public void setColDepartment2(String colDepartment2) {
 		this.colDepartment2 = colDepartment2;
 	}
-	public Timestamp getColAtime2() {
+	public String getColAtime2() {
 		return colAtime2;
 	}
-	public void setColAtime2(Timestamp colAtime2) {
+	public void setColAtime2(String colAtime2) {
 		this.colAtime2 = colAtime2;
 	}
 	public String getColStatus2() {
@@ -407,10 +393,10 @@ public class TeacherProject2Map{
 	public void setColDepartment3(String colDepartment3) {
 		this.colDepartment3 = colDepartment3;
 	}
-	public Timestamp getColAtime3() {
+	public String getColAtime3() {
 		return colAtime3;
 	}
-	public void setColAtime3(Timestamp colAtime3) {
+	public void setColAtime3(String colAtime3) {
 		this.colAtime3 = colAtime3;
 	}
 	public String getColStatus3() {
@@ -449,6 +435,18 @@ public class TeacherProject2Map{
 	public void setColNote(String colNote) {
 		this.colNote = colNote;
 	}
+	public String getUser() {
+		return user;
+	}
+	public void setUser(String user) {
+		this.user = user;
+	}
+	public String getSchool() {
+		return school;
+	}
+	public void setSchool(String school) {
+		this.school = school;
+	}
 	@Override
 	public String toString() {
 		return "TeacherProject2Map [colId=" + colId + ", colCode=" + colCode + ", colPnum=" + colPnum + ", colPname="
@@ -473,4 +471,6 @@ public class TeacherProject2Map{
 				+ ", school=" + school + "]";
 	}
 
+	
+	
 }

@@ -1,18 +1,24 @@
 package cn.xupt.reward.project.constant.domain;
 
-public class RewardScoreSys {
-	private String colName;
+/**
+ * 科研获奖基本信息
+ * @author lebronzs
+ *
+ */
+public class RewardScore {
+	private String colRname;
 	private String colType;
 	private String colClass;
 	private long colOrder;
 	private long colMoney;
 	private String colNote;
 	
-	public String getColName() {
-		return colName;
+
+	public String getColRname() {
+		return colRname;
 	}
-	public void setColName(String colName) {
-		this.colName = colName;
+	public void setColRname(String colRname) {
+		this.colRname = colRname;
 	}
 	public String getColType() {
 		return colType;
@@ -46,9 +52,9 @@ public class RewardScoreSys {
 	}
 	@Override
 	public String toString() {
-		return "RewardScoreSys [colName=" + colName + ", colType=" + colType + ", colClass=" + colClass + ", colOrder="
+		return "RewardScore [colRname=" + colRname + ", colType=" + colType + ", colClass=" + colClass + ", colOrder="
 				+ colOrder + ", colMoney=" + colMoney + ", colNote=" + colNote + "]";
 	}
-	
+
 	
 }

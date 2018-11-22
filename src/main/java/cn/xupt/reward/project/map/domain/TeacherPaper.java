@@ -3,15 +3,17 @@ package cn.xupt.reward.project.map.domain;
 import java.security.Timestamp;
 import java.util.Date;
 
-public class TeacherBookMap {
+public class TeacherPaper {
 	private long colId;
 	private String colCode;
-	private String colBname;
-	private String colBtype;
-	private String colIsbn;
 	private String colPname;
-	private String colPtype;
-	private String colWcount;
+	private String colJname;
+	private String colJtype;
+	private String colJtypelist;
+	private String colJissue;
+	private String colJpage;
+	private String colJsnum;
+	private String colJsdate;
 	private long colUorder;
 	private String colAuthorlist;
 	private String colFactor;
@@ -20,26 +22,26 @@ public class TeacherBookMap {
 	private long colOrder;
 	private long colXiaoneinumber;
 	private long colXiaoneiorder;
-	private Date colDate;
-	private Timestamp colTtime;
+	private String colDate;
+	private String colTtime;
 	private String colAuditor1;
 	private String colDepartment1;
-	private Timestamp colAtime1;
+	private String colAtime1;
 	private String colStatus1;
 	private String colAtxt1;
 	private String colAuditor2;
 	private String colDepartment2;
-	private Timestamp colAtime2;
+	private String colAtime2;
 	private String colStatus2;
 	private String colAtxt2;
 	private String colAuditor3;
-	private String colSepartment3;
-	private Timestamp colAtime3;
+	private String colDepartment3;
+	private String colAtime3;
 	private String colStatus3;
 	private String colAtxt3;
 	private String colCauditor;
 	private String colCdepartment;
-	private Timestamp colCatime;
+	private String colCatime;
 	private String colCstatus;
 	private String colCatxt;
 	private String colEvidence;
@@ -48,6 +50,21 @@ public class TeacherBookMap {
 	private String colValue;
 	private String colMoney;
 	private String colNote;
+	private String username;
+	private String userschool;
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getUserschool() {
+		return userschool;
+	}
+	public void setUserschool(String userschool) {
+		this.userschool = userschool;
+	}
 	public long getColId() {
 		return colId;
 	}
@@ -60,41 +77,53 @@ public class TeacherBookMap {
 	public void setColCode(String colCode) {
 		this.colCode = colCode;
 	}
-	public String getColBname() {
-		return colBname;
-	}
-	public void setColBname(String colBname) {
-		this.colBname = colBname;
-	}
-	public String getColBtype() {
-		return colBtype;
-	}
-	public void setColBtype(String colBtype) {
-		this.colBtype = colBtype;
-	}
-	public String getColIsbn() {
-		return colIsbn;
-	}
-	public void setColIsbn(String colIsbn) {
-		this.colIsbn = colIsbn;
-	}
 	public String getColPname() {
 		return colPname;
 	}
 	public void setColPname(String colPname) {
 		this.colPname = colPname;
 	}
-	public String getColPtype() {
-		return colPtype;
+	public String getColJname() {
+		return colJname;
 	}
-	public void setColPtype(String colPtype) {
-		this.colPtype = colPtype;
+	public void setColJname(String colJname) {
+		this.colJname = colJname;
 	}
-	public String getColWcount() {
-		return colWcount;
+	public String getColJtype() {
+		return colJtype;
 	}
-	public void setColWcount(String colWcount) {
-		this.colWcount = colWcount;
+	public void setColJtype(String colJtype) {
+		this.colJtype = colJtype;
+	}
+	public String getColJtypelist() {
+		return colJtypelist;
+	}
+	public void setColJtypelist(String colJtypelist) {
+		this.colJtypelist = colJtypelist;
+	}
+	public String getColJissue() {
+		return colJissue;
+	}
+	public void setColJissue(String colJissue) {
+		this.colJissue = colJissue;
+	}
+	public String getColJpage() {
+		return colJpage;
+	}
+	public void setColJpage(String colJpage) {
+		this.colJpage = colJpage;
+	}
+	public String getColJsnum() {
+		return colJsnum;
+	}
+	public void setColJsnum(String colJsnum) {
+		this.colJsnum = colJsnum;
+	}
+	public String getColJsdate() {
+		return colJsdate;
+	}
+	public void setColJsdate(String colJsdate) {
+		this.colJsdate = colJsdate;
 	}
 	public long getColUorder() {
 		return colUorder;
@@ -144,16 +173,16 @@ public class TeacherBookMap {
 	public void setColXiaoneiorder(long colXiaoneiorder) {
 		this.colXiaoneiorder = colXiaoneiorder;
 	}
-	public Date getColDate() {
+	public String getColDate() {
 		return colDate;
 	}
-	public void setColDate(Date colDate) {
+	public void setColDate(String colDate) {
 		this.colDate = colDate;
 	}
-	public Timestamp getColTtime() {
+	public String getColTtime() {
 		return colTtime;
 	}
-	public void setColTtime(Timestamp colTtime) {
+	public void setColTtime(String colTtime) {
 		this.colTtime = colTtime;
 	}
 	public String getColAuditor1() {
@@ -168,10 +197,10 @@ public class TeacherBookMap {
 	public void setColDepartment1(String colDepartment1) {
 		this.colDepartment1 = colDepartment1;
 	}
-	public Timestamp getColAtime1() {
+	public String getColAtime1() {
 		return colAtime1;
 	}
-	public void setColAtime1(Timestamp colAtime1) {
+	public void setColAtime1(String colAtime1) {
 		this.colAtime1 = colAtime1;
 	}
 	public String getColStatus1() {
@@ -198,10 +227,10 @@ public class TeacherBookMap {
 	public void setColDepartment2(String colDepartment2) {
 		this.colDepartment2 = colDepartment2;
 	}
-	public Timestamp getColAtime2() {
+	public String getColAtime2() {
 		return colAtime2;
 	}
-	public void setColAtime2(Timestamp colAtime2) {
+	public void setColAtime2(String colAtime2) {
 		this.colAtime2 = colAtime2;
 	}
 	public String getColStatus2() {
@@ -222,16 +251,16 @@ public class TeacherBookMap {
 	public void setColAuditor3(String colAuditor3) {
 		this.colAuditor3 = colAuditor3;
 	}
-	public String getColSepartment3() {
-		return colSepartment3;
+	public String getColDepartment3() {
+		return colDepartment3;
 	}
-	public void setColSepartment3(String colSepartment3) {
-		this.colSepartment3 = colSepartment3;
+	public void setColDepartment3(String colDepartment3) {
+		this.colDepartment3 = colDepartment3;
 	}
-	public Timestamp getColAtime3() {
+	public String getColAtime3() {
 		return colAtime3;
 	}
-	public void setColAtime3(Timestamp colAtime3) {
+	public void setColAtime3(String colAtime3) {
 		this.colAtime3 = colAtime3;
 	}
 	public String getColStatus3() {
@@ -258,10 +287,10 @@ public class TeacherBookMap {
 	public void setColCdepartment(String colCdepartment) {
 		this.colCdepartment = colCdepartment;
 	}
-	public Timestamp getColCatime() {
+	public String getColCatime() {
 		return colCatime;
 	}
-	public void setColCatime(Timestamp colCatime) {
+	public void setColCatime(String colCatime) {
 		this.colCatime = colCatime;
 	}
 	public String getColCstatus() {
@@ -314,22 +343,23 @@ public class TeacherBookMap {
 	}
 	@Override
 	public String toString() {
-		return "TeacherBookMap [colId=" + colId + ", colCode=" + colCode + ", colBname=" + colBname + ", colBtype="
-				+ colBtype + ", colIsbn=" + colIsbn + ", colPname=" + colPname + ", colPtype=" + colPtype
-				+ ", colWcount=" + colWcount + ", colUorder=" + colUorder + ", colAuthorlist=" + colAuthorlist
-				+ ", colFactor=" + colFactor + ", colUnitlist=" + colUnitlist + ", colNumber=" + colNumber
-				+ ", colOrder=" + colOrder + ", colXiaoneinumber=" + colXiaoneinumber + ", colXiaoneiorder="
-				+ colXiaoneiorder + ", colDate=" + colDate + ", colTtime=" + colTtime + ", colAuditor1=" + colAuditor1
-				+ ", colDepartment1=" + colDepartment1 + ", colAtime1=" + colAtime1 + ", colStatus1=" + colStatus1
-				+ ", colAtxt1=" + colAtxt1 + ", colAuditor2=" + colAuditor2 + ", colDepartment2=" + colDepartment2
-				+ ", colAtime2=" + colAtime2 + ", colStatus2=" + colStatus2 + ", colAtxt2=" + colAtxt2
-				+ ", colAuditor3=" + colAuditor3 + ", colSepartment3=" + colSepartment3 + ", colAtime3=" + colAtime3
-				+ ", colStatus3=" + colStatus3 + ", colAtxt3=" + colAtxt3 + ", colCauditor=" + colCauditor
-				+ ", colCdepartment=" + colCdepartment + ", colCatime=" + colCatime + ", colCstatus=" + colCstatus
-				+ ", colCatxt=" + colCatxt + ", colEvidence=" + colEvidence + ", colImageurl=" + colImageurl
-				+ ", colUnitvalue=" + colUnitvalue + ", colValue=" + colValue + ", colMoney=" + colMoney + ", colNote="
-				+ colNote + "]";
+		return "TeacherPaper [colId=" + colId + ", colCode=" + colCode + ", colPname=" + colPname + ", colJname="
+				+ colJname + ", colJtype=" + colJtype + ", colJtypelist=" + colJtypelist + ", colJissue=" + colJissue
+				+ ", colJpage=" + colJpage + ", colJsnum=" + colJsnum + ", colJsdate=" + colJsdate + ", colUorder="
+				+ colUorder + ", colAuthorlist=" + colAuthorlist + ", colFactor=" + colFactor + ", colUnitlist="
+				+ colUnitlist + ", colNumber=" + colNumber + ", colOrder=" + colOrder + ", colXiaoneinumber="
+				+ colXiaoneinumber + ", colXiaoneiorder=" + colXiaoneiorder + ", colDate=" + colDate + ", colTtime="
+				+ colTtime + ", colAuditor1=" + colAuditor1 + ", colDepartment1=" + colDepartment1 + ", colAtime1="
+				+ colAtime1 + ", colStatus1=" + colStatus1 + ", colAtxt1=" + colAtxt1 + ", colAuditor2=" + colAuditor2
+				+ ", colDepartment2=" + colDepartment2 + ", colAtime2=" + colAtime2 + ", colStatus2=" + colStatus2
+				+ ", colAtxt2=" + colAtxt2 + ", colAuditor3=" + colAuditor3 + ", colDepartment3=" + colDepartment3
+				+ ", colAtime3=" + colAtime3 + ", colStatus3=" + colStatus3 + ", colAtxt3=" + colAtxt3
+				+ ", colCauditor=" + colCauditor + ", colCdepartment=" + colCdepartment + ", colCatime=" + colCatime
+				+ ", colCstatus=" + colCstatus + ", colCatxt=" + colCatxt + ", colEvidence=" + colEvidence
+				+ ", colImageurl=" + colImageurl + ", colUnitvalue=" + colUnitvalue + ", colValue=" + colValue
+				+ ", colMoney=" + colMoney + ", colNote=" + colNote + ", username=" + username + ", userschool="
+				+ userschool + "]";
 	}
-	
+
 	
 }

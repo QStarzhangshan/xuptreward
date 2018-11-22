@@ -1,24 +1,22 @@
 package cn.xupt.reward.project.constant.domain;
 
-public class PaperScoreSys {
+public class PatentScore {
 	private String colType;
-	private long colOrder;
+	private String colStatus;
 	private long colValue;
-	private String colMoney;
+	private long colMoney;
 	private String colNote;
-	
-	
 	public String getColType() {
 		return colType;
 	}
 	public void setColType(String colType) {
 		this.colType = colType;
 	}
-	public long getColOrder() {
-		return colOrder;
+	public String getColStatus() {
+		return colStatus;
 	}
-	public void setColOrder(long colOrder) {
-		this.colOrder = colOrder;
+	public void setColStatus(String colStatus) {
+		this.colStatus = colStatus;
 	}
 	public long getColValue() {
 		return colValue;
@@ -26,10 +24,10 @@ public class PaperScoreSys {
 	public void setColValue(long colValue) {
 		this.colValue = colValue;
 	}
-	public String getColMoney() {
+	public long getColMoney() {
 		return colMoney;
 	}
-	public void setColMoney(String colMoney) {
+	public void setColMoney(long colMoney) {
 		this.colMoney = colMoney;
 	}
 	public String getColNote() {
@@ -40,10 +38,9 @@ public class PaperScoreSys {
 	}
 	@Override
 	public String toString() {
-		return "PaperScoreSys [colType=" + colType + ", colOrder=" + colOrder + ", colValue=" + colValue + ", colMoney="
-				+ colMoney + ", colNote=" + colNote + "]";
+		return "PatentScoreSys [colType=" + colType + ", colStatus=" + colStatus + ", colValue=" + colValue
+				+ ", colMoney=" + colMoney + ", colNote=" + colNote + "]";
 	}
-	
 	
 	
 }

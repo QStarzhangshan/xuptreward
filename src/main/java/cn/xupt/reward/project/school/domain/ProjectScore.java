@@ -1,5 +1,10 @@
-package cn.xupt.reward.project.constant.domain;
+package cn.xupt.reward.project.school.domain;
 
+/**
+ * 项目类型
+ * @author lebronzs
+ *
+ */
 public class ProjectScore {
 	private long colId;
 	private String colType;

@@ -1,6 +1,10 @@
 package cn.xupt.reward.project.school.domain;
 
-
+/**
+ * 项目类型的下属类型
+ * @author lebronzs
+ *
+ */
 public class ProjectType {
 	private long colId;
 	private String colType;

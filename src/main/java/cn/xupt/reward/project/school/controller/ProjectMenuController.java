@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
 
-import cn.xupt.reward.project.constant.domain.ProjectScore;
 import cn.xupt.reward.project.school.domain.ProjectType;
 import cn.xupt.reward.project.school.service.ProjectTypeService;
 
@@ -24,14 +23,16 @@ public class ProjectMenuController {
 	 * 选择一级项目
 	 *
 	 */
-	public ProjectScore findAll() {
-		return null;
+	@RequestMapping("findProjectType")
+	public List<String> findAll() {
+		List<String> list = projectTypeService.findAll();
+		return list;
 	}
 	
 	/**
 	 * 根据一级项目，选择二级项目
 	 */
-	@RequestMapping("findproject")
+	@RequestMapping("findProjectSubtype")
 	public List<ProjectType> findAllType(@RequestBody String p) {
 		JSONObject obj = JSONObject.parseObject(p);
 		String colType = obj.getString("colType");

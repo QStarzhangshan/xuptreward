@@ -20,5 +20,10 @@ public class ProjectTypeServiceImpl implements ProjectTypeService{
 		return projectTypeMapper.findAllByType(colType);
 	}
 
+	@Override
+	public List<String> findAll() {
+		return projectTypeMapper.findAll();
+	}
+
 	
 }

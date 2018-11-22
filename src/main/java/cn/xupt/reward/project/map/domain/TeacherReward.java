@@ -1,15 +1,20 @@
 package cn.xupt.reward.project.map.domain;
 
-import java.security.Timestamp;
+
+import java.sql.Timestamp;
 import java.util.Date;
 
-public class TeacherPatentMap {
+public class TeacherReward {
 	private long colId;
 	private String colCode;
-	private String colPnum;
-	private String colPname;
-	private String colPtype;
-	private String colPstatus;
+	private String colRnum;
+	private String colRname;
+	private String colGtype;
+	private String colRtype;
+	private String colRrname;
+	private String colRclass;
+	private String colRaward;
+	private long colUorder;
 	private String colAuthorlist;
 	private String colFactor;
 	private String colUnitlist;
@@ -17,27 +22,26 @@ public class TeacherPatentMap {
 	private long colOrder;
 	private long colXiaoneinumber;
 	private long colXiaoneiorder;
-	private long colUorder;
-	private Date colDate;
-	private Timestamp colTtime;
+	private String colDate;
+	private String colTtime;
 	private String colAuditor1;
 	private String colDepartment1;
-	private Timestamp colAtime1;
+	private String colAtime1;
 	private String colStatus1;
 	private String colAtxt1;
 	private String colAuditor2;
 	private String colDepartment2;
-	private Timestamp colAtime2;
+	private String colAtime2;
 	private String colStatus2;
 	private String colAtxt2;
 	private String colAuditor3;
 	private String colDepartment3;
-	private Timestamp colAtime3;
+	private String colAtime3;
 	private String colStatus3;
 	private String colAtxt3;
 	private String colCauditor;
 	private String colCdepartment;
-	private Timestamp colCatime;
+	private String colCatime;
 	private String colCstatus;
 	private String colCatxt;
 	private String colEvidence;
@@ -46,6 +50,8 @@ public class TeacherPatentMap {
 	private String colValue;
 	private String colMoney;
 	private String colNote;
+	private String username;
+	private String userschool;
 	public long getColId() {
 		return colId;
 	}
@@ -58,29 +64,53 @@ public class TeacherPatentMap {
 	public void setColCode(String colCode) {
 		this.colCode = colCode;
 	}
-	public String getColPnum() {
-		return colPnum;
+	public String getColRnum() {
+		return colRnum;
 	}
-	public void setColPnum(String colPnum) {
-		this.colPnum = colPnum;
+	public void setColRnum(String colRnum) {
+		this.colRnum = colRnum;
 	}
-	public String getColPname() {
-		return colPname;
+	public String getColRname() {
+		return colRname;
 	}
-	public void setColPname(String colPname) {
-		this.colPname = colPname;
+	public void setColRname(String colRname) {
+		this.colRname = colRname;
 	}
-	public String getColPtype() {
-		return colPtype;
+	public String getColGtype() {
+		return colGtype;
 	}
-	public void setColPtype(String colPtype) {
-		this.colPtype = colPtype;
+	public void setColGtype(String colGtype) {
+		this.colGtype = colGtype;
 	}
-	public String getColPstatus() {
-		return colPstatus;
+	public String getColRtype() {
+		return colRtype;
 	}
-	public void setColPstatus(String colPstatus) {
-		this.colPstatus = colPstatus;
+	public void setColRtype(String colRtype) {
+		this.colRtype = colRtype;
+	}
+	public String getColRrname() {
+		return colRrname;
+	}
+	public void setColRrname(String colRrname) {
+		this.colRrname = colRrname;
+	}
+	public String getColRclass() {
+		return colRclass;
+	}
+	public void setColRclass(String colRclass) {
+		this.colRclass = colRclass;
+	}
+	public String getColRaward() {
+		return colRaward;
+	}
+	public void setColRaward(String colRaward) {
+		this.colRaward = colRaward;
+	}
+	public long getColUorder() {
+		return colUorder;
+	}
+	public void setColUorder(long colUorder) {
+		this.colUorder = colUorder;
 	}
 	public String getColAuthorlist() {
 		return colAuthorlist;
@@ -124,22 +154,16 @@ public class TeacherPatentMap {
 	public void setColXiaoneiorder(long colXiaoneiorder) {
 		this.colXiaoneiorder = colXiaoneiorder;
 	}
-	public long getColUorder() {
-		return colUorder;
-	}
-	public void setColUorder(long colUorder) {
-		this.colUorder = colUorder;
-	}
-	public Date getColDate() {
+	public String getColDate() {
 		return colDate;
 	}
-	public void setColDate(Date colDate) {
+	public void setColDate(String colDate) {
 		this.colDate = colDate;
 	}
-	public Timestamp getColTtime() {
+	public String getColTtime() {
 		return colTtime;
 	}
-	public void setColTtime(Timestamp colTtime) {
+	public void setColTtime(String colTtime) {
 		this.colTtime = colTtime;
 	}
 	public String getColAuditor1() {
@@ -154,10 +178,10 @@ public class TeacherPatentMap {
 	public void setColDepartment1(String colDepartment1) {
 		this.colDepartment1 = colDepartment1;
 	}
-	public Timestamp getColAtime1() {
+	public String getColAtime1() {
 		return colAtime1;
 	}
-	public void setColAtime1(Timestamp colAtime1) {
+	public void setColAtime1(String colAtime1) {
 		this.colAtime1 = colAtime1;
 	}
 	public String getColStatus1() {
@@ -184,10 +208,10 @@ public class TeacherPatentMap {
 	public void setColDepartment2(String colDepartment2) {
 		this.colDepartment2 = colDepartment2;
 	}
-	public Timestamp getColAtime2() {
+	public String getColAtime2() {
 		return colAtime2;
 	}
-	public void setColAtime2(Timestamp colAtime2) {
+	public void setColAtime2(String colAtime2) {
 		this.colAtime2 = colAtime2;
 	}
 	public String getColStatus2() {
@@ -214,10 +238,10 @@ public class TeacherPatentMap {
 	public void setColDepartment3(String colDepartment3) {
 		this.colDepartment3 = colDepartment3;
 	}
-	public Timestamp getColAtime3() {
+	public String getColAtime3() {
 		return colAtime3;
 	}
-	public void setColAtime3(Timestamp colAtime3) {
+	public void setColAtime3(String colAtime3) {
 		this.colAtime3 = colAtime3;
 	}
 	public String getColStatus3() {
@@ -244,10 +268,10 @@ public class TeacherPatentMap {
 	public void setColCdepartment(String colCdepartment) {
 		this.colCdepartment = colCdepartment;
 	}
-	public Timestamp getColCatime() {
+	public String getColCatime() {
 		return colCatime;
 	}
-	public void setColCatime(Timestamp colCatime) {
+	public void setColCatime(String colCatime) {
 		this.colCatime = colCatime;
 	}
 	public String getColCstatus() {
@@ -298,13 +322,26 @@ public class TeacherPatentMap {
 	public void setColNote(String colNote) {
 		this.colNote = colNote;
 	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getUserschool() {
+		return userschool;
+	}
+	public void setUserschool(String userschool) {
+		this.userschool = userschool;
+	}
 	@Override
 	public String toString() {
-		return "TeacherPatentMap [colId=" + colId + ", colCode=" + colCode + ", colPnum=" + colPnum + ", colPname="
-				+ colPname + ", colPtype=" + colPtype + ", colPstatus=" + colPstatus + ", colAuthorlist="
-				+ colAuthorlist + ", colFactor=" + colFactor + ", colUnitlist=" + colUnitlist + ", colNumber="
-				+ colNumber + ", colOrder=" + colOrder + ", colXiaoneinumber=" + colXiaoneinumber + ", colXiaoneiorder="
-				+ colXiaoneiorder + ", colUorder=" + colUorder + ", colDate=" + colDate + ", colTtime=" + colTtime
+		return "TeacherReward [colId=" + colId + ", colCode=" + colCode + ", colRnum=" + colRnum + ", colRname="
+				+ colRname + ", colGtype=" + colGtype + ", colRtype=" + colRtype + ", colRrname=" + colRrname
+				+ ", colRclass=" + colRclass + ", colRaward=" + colRaward + ", colUorder=" + colUorder
+				+ ", colAuthorlist=" + colAuthorlist + ", colFactor=" + colFactor + ", colUnitlist=" + colUnitlist
+				+ ", colNumber=" + colNumber + ", colOrder=" + colOrder + ", colXiaoneinumber=" + colXiaoneinumber
+				+ ", colXiaoneiorder=" + colXiaoneiorder + ", colDate=" + colDate + ", colTtime=" + colTtime
 				+ ", colAuditor1=" + colAuditor1 + ", colDepartment1=" + colDepartment1 + ", colAtime1=" + colAtime1
 				+ ", colStatus1=" + colStatus1 + ", colAtxt1=" + colAtxt1 + ", colAuditor2=" + colAuditor2
 				+ ", colDepartment2=" + colDepartment2 + ", colAtime2=" + colAtime2 + ", colStatus2=" + colStatus2
@@ -313,9 +350,11 @@ public class TeacherPatentMap {
 				+ ", colCauditor=" + colCauditor + ", colCdepartment=" + colCdepartment + ", colCatime=" + colCatime
 				+ ", colCstatus=" + colCstatus + ", colCatxt=" + colCatxt + ", colEvidence=" + colEvidence
 				+ ", colImageurl=" + colImageurl + ", colUnitvalue=" + colUnitvalue + ", colValue=" + colValue
-				+ ", colMoney=" + colMoney + ", colNote=" + colNote + "]";
+				+ ", colMoney=" + colMoney + ", colNote=" + colNote + ", username=" + username + ", userschool="
+				+ userschool + "]";
 	}
 	
 	
+
 	
 }

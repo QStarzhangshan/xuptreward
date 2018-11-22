@@ -7,6 +7,8 @@ import cn.xupt.reward.project.school.domain.ProjectType;
 public interface ProjectTypeService {
 
 	List<ProjectType> findAllByType(String colType);
+
+	List<String> findAll();
 	
 	
 }

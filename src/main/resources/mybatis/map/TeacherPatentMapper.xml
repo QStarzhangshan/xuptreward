@@ -2,41 +2,14 @@
 <!DOCTYPE mapper
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.xupt.reward.project.map.mapper.TeacherProject2MapMapper">
-	<resultMap type="TeacherProject2Map" id="TeacherProject2MapResult">
+<mapper namespace="cn.xupt.reward.project.map.mapper.TeacherPatentMapper">
+	<resultMap type="TeacherPatent" id="TeacherPatentResult">
 		<id     property="colId"       column="col_id"      />
 		<result property="colCode"       column="col_code"      />
 		<result property="colPnum"    column="col_pnum"   />
 		<result property="colPname"    column="col_pname"   />
 		<result property="colPtype"    column="col_ptype"   />
-		<result property="colPsubtype"    column="col_psubtype"   />
-		<result property="colMtype"    column="col_mtype"   />
-		<result property="colContent"    column="col_content"   />
-		<result property="colPmoney"    column="col_pmoney"   />
-		<result property="colPecent"    column="col_pecent"   />
-		<result property="colSign"    column="col_sign"   />
-		<result property="colFac"    column="col_fac"   />
-		<result property="colMdate"    column="col_mdate"   />
-		<result property="colMoney1"    column="col_money1"   />
-		<result property="colTime1"    column="col_time1"   />
-		<result property="colXupt1"    column="col_xupt1"   />
-		<result property="colMoney2"    column="col_money2"   />
-		<result property="colTime2"    column="col_time2"   />
-		<result property="colXupt2"    column="col_xupt2"   />
-		<result property="colMoney3"    column="col_money3"   />
-		<result property="colTime3"    column="col_time3"   />
-		<result property="colXupt3"    column="col_xupt3"   />
-		<result property="colIdentifytype"    column="col_identifytype"   />
-		<result property="colSummary"    column="col_summary"   />
-		<result property="colInnovation"    column="col_innovation"   />
-		<result property="colExpected"    column="col_expected"   />
-		<result property="colTarget"    column="col_target"   />
-		<result property="colTextent"    column="col_textent"   />
-		<result property="colSchedule"    column="col_schedule"   />
-		<result property="colMember"    column="col_member"   />
-		<result property="colBdate"    column="col_bdate"   />
-		<result property="colEdate"    column="col_edate"   />
-		<result property="colUorder"    column="col_uorder"   />
+		<result property="colPstatus"    column="col_pstatus"   />
 		<result property="colAuthorlist"    column="col_authorlist"   />
 		<result property="colFactor"    column="col_factor"   />
 		<result property="colUnitlist"    column="col_unitlist"   />
@@ -44,6 +17,7 @@
 		<result property="colOrder"    column="col_order"   />
 		<result property="colXiaoneinumber"    column="col_xiaoneinumber"   />
 		<result property="colXiaoneiorder"    column="col_xiaoneiorder"   />
+		<result property="colUorder"    column="col_uorder"   />
 		<result property="colDate"    column="col_date"   />
 		<result property="colTtime"    column="col_ttime"   />
 		<result property="colAuditor1"    column="col_auditor1"   />
@@ -61,59 +35,60 @@
 		<result property="colAtime3"    column="col_atime3"   />
 		<result property="colStatus3"    column="col_status3"   />
 		<result property="colAtxt3"    column="col_atxt3"   />
+		<result property="colCauditor"    column="col_cauditor"   />
+		<result property="colCdepartment"    column="col_cdepartment"   />
+		<result property="colCatime"    column="col_catime"   />
+		<result property="colCstatus"    column="col_cstatus"   />
+		<result property="colCatime"    column="col_catime"   />
+		<result property="colCatxt"    column="col_catxt"   />
 		<result property="colEvidence"    column="col_evidence"   />
 		<result property="colImageurl"    column="col_imageurl"   />
+		<result property="colUnitvalue"    column="col_unitvalue"   />
+		<result property="colValue"    column="col_value"   />
 		<result property="colMoney"    column="col_money"   />
 		<result property="colNote"    column="col_note"   />
 	</resultMap>
 	
-	<resultMap type="TeacherProject2Map" id="TeacherProject2MapResult2">
-		<id     property="colId"       column="col_id"      />
+	<resultMap type="TeacherPatent" id="TeacherPatentResult2">
 		<result property="colPname"    column="col_pname"   />
 		<result property="colPtype"    column="col_ptype"   />
-		<result property="colPsubtype"    column="col_psubtype"   />
-		<result property="colTtime"    column="col_ttime"   />
+		<result property="colPnum"    column="col_pnum"   />
+		<result property="colPstatus"    column="col_pstatus"   />
+		<result property="colDate"    column="col_date"   />
+		<result property="colMoney"    column="col_money"   />
 		<result property="colStatus1"    column="col_status1"   />
-		<result property="colStatus2"    column="col_status2"   />
-		<result property="colStatus3"    column="col_status3"   />
-		<result property="colTime1"    column="col_time1"   />
-		<result property="colBdate"    column="col_bdate"   />
-		<result property="colEdate"    column="col_edate"   />
-		<association property="user" javaType="String">
-			<result property="colUser" column="col_name"/>
+		<association property="username" javaType="String">
+			<result property="colName"    column="col_name"   />
 		</association>
-		<association property="school" javaType="String">
-			<result property="colSchool" column="col_school"/>
+		<association property="userschool" javaType="String">
+			<result property="colSchool"    column="col_school"   />
 		</association>
 	</resultMap>
 	
-	<select id="listAll" resultMap="TeacherProject2MapResult2">
-		select tpm.*,
+	<select id="findAll" resultMap="TeacherPatentResult2">
+		select tp.col_pname,
+		tp.col_ptype,
+		tp.col_pstatus,
+		tp.col_date,
+		tp.col_pnum,
 		u.col_name,
-		t.col_school
-		from teacher_project2_map tpm
-		left join base_users u on tpm.col_code=u.col_code
-		left join base_teacher t on u.col_code = t.col_code
+		t.col_school,
+		tp.col_money,
+		tp.col_status1
+		from teacher_patent_map tp 
+		left join base_users u on tp.col_code=u.col_code
+		left join base_teacher t on u.col_code=t.col_code
 		where 1=1
-		<if test="colStatus3!=null and colStatus3!=''">and tpm.col_status3 = #{colStatus3}</if>
-		<if test="colStatus1!=null and colStatus1!=''">and tpm.col_status1 = #{colStatus1}</if>
-		<if test="colStatus2!=null and colStatus2!=''">and tpm.col_status2 = #{colStatus2}</if>
-		<if test="colTtime!=null and colTtime!=''">and tpm.col_ttime like CONCAT('%',#{colTtime},'%')</if>
-		<if test="colSname!=null and colSname!=''">and t.col_school = #{colSname}</if>
-		<if test="colType!=null and colType3!=''">and tpm.col_ptype = #{colType}</if>
-		<if test="colSubtype!=null and colSubtype!=''">and tpm.col_psubtype = #{colSubtype}</if>
-	</select>
-	
-	<select id="checkPnum" parameterType="String" resultType="int">
-		select count(*) 
-		from teacher_project2_map 
-		where 1=1
-		<if test="colPnum!=null and colPnum!=''">and col_pnum=#{colPnum}</if>
+		<if test="colDate!=null and colDate!=''">and tp.col_date like CONCAT('%',#{colDate},'%')</if>
+		<if test="colSname!=null and colSname!=''">and t.col_school=#{colSname}</if>
+		<if test="colStatus1!=null and colStatus1!=''">and tp.col_status1=#{colStatus1}</if>
+		<if test="colType!=null and colType!=''">and tp.col_ptype=#{colType}</if>
+		<if test="Money!=null and Money!=''">and tp.col_money>0</if>
 	</select>
 	
 	<!--<select id="selectUserByPhoneNumber" parameterType="String" resultMap="UserResult">-->
 		<!--select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email, u.phonenumber, u.sex, u.avatar, u.password, u.salt, u.status, u.refuse_des, u.login_ip, u.login_date, u.create_time,-->
-       		    <!--d.dept_id, d.parent_id, d.dept_name, d.order_num , d.status as dept_status-->
+       		    <!--d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status-->
 		<!--from sys_user u-->
 			 <!--left join sys_dept d on u.dept_id = d.dept_id-->
 			 <!--left join sys_user_role ur on u.user_id = ur.user_id-->

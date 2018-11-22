@@ -5,12 +5,26 @@
 <mapper namespace="cn.xupt.reward.project.school.mapper.ProjectTypeMapper">
 	<resultMap type="ProjectType" id="ProjectTypeResult">
 		<id     property="colId"       column="col_id"      />
-		<result property="colName"       column="col_name"      />
 		<result property="colType"    column="col_type"   />
-		<result property="colIsteach"    column="col_isteach"   />
-		<result property="colNote"    column="col_note"   />
+		<result property="colSubtype"    column="col_subtype"   />
 		
 	</resultMap>
+	
+		<resultMap type="ProjectScore" id="ProjectScoreResult">
+		<id     property="colId"       column="col_id"      />
+		<result property="colType"       column="col_type"      />
+		<result property="colSubtype"    column="col_subtype"   />
+		<result property="colFactor"    column="col_factor"   />
+		<result property="colSubfac"    column="col_subfac"   />
+		<result property="colContent"    column="col_content"   />
+		<result property="colValue"    column="col_value"   />
+		<result property="colMoney"    column="col_money"   />
+		<result property="colNote"    column="col_note"   />
+	</resultMap>
+	
+	<select id="findAll" resultType="String">
+		select distinct col_type from project_score_sys
+	</select>
 	
 	<select id="findAllByType" parameterType="String" resultMap="ProjectTypeResult">
 		select * from project_type 

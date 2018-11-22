@@ -1,21 +1,17 @@
 package cn.xupt.reward.project.map.domain;
 
+import java.security.Timestamp;
+import java.util.Date;
 
-public class TeacherProjectMap {
+public class TeacherBook {
 	private long colId;
 	private String colCode;
-	private String colPnum;
+	private String colBname;
+	private String colBtype;
+	private String colIsbn;
 	private String colPname;
 	private String colPtype;
-	private String colPsubtype;
-	private String colMtype;
-	private String colContent;
-	private long colPmoney;
-	private String colCmoney;
-	private String colIdentifytype;
-	private String colIdentifyres;
-	private String colBdate;
-	private String colEdate;
+	private String colWcount;
 	private long colUorder;
 	private String colAuthorlist;
 	private String colFactor;
@@ -37,7 +33,7 @@ public class TeacherProjectMap {
 	private String colStatus2;
 	private String colAtxt2;
 	private String colAuditor3;
-	private String colDepartment3;
+	private String colSepartment3;
 	private String colAtime3;
 	private String colStatus3;
 	private String colAtxt3;
@@ -52,6 +48,8 @@ public class TeacherProjectMap {
 	private String colValue;
 	private String colMoney;
 	private String colNote;
+	private String username;
+	private String userschool;
 	public long getColId() {
 		return colId;
 	}
@@ -64,11 +62,23 @@ public class TeacherProjectMap {
 	public void setColCode(String colCode) {
 		this.colCode = colCode;
 	}
-	public String getColPnum() {
-		return colPnum;
+	public String getColBname() {
+		return colBname;
 	}
-	public void setColPnum(String colPnum) {
-		this.colPnum = colPnum;
+	public void setColBname(String colBname) {
+		this.colBname = colBname;
+	}
+	public String getColBtype() {
+		return colBtype;
+	}
+	public void setColBtype(String colBtype) {
+		this.colBtype = colBtype;
+	}
+	public String getColIsbn() {
+		return colIsbn;
+	}
+	public void setColIsbn(String colIsbn) {
+		this.colIsbn = colIsbn;
 	}
 	public String getColPname() {
 		return colPname;
@@ -82,59 +92,11 @@ public class TeacherProjectMap {
 	public void setColPtype(String colPtype) {
 		this.colPtype = colPtype;
 	}
-	public String getColPsubtype() {
-		return colPsubtype;
+	public String getColWcount() {
+		return colWcount;
 	}
-	public void setColPsubtype(String colPsubtype) {
-		this.colPsubtype = colPsubtype;
-	}
-	public String getColMtype() {
-		return colMtype;
-	}
-	public void setColMtype(String colMtype) {
-		this.colMtype = colMtype;
-	}
-	public String getColContent() {
-		return colContent;
-	}
-	public void setColContent(String colContent) {
-		this.colContent = colContent;
-	}
-	public long getColPmoney() {
-		return colPmoney;
-	}
-	public void setColPmoney(long colPmoney) {
-		this.colPmoney = colPmoney;
-	}
-	public String getColCmoney() {
-		return colCmoney;
-	}
-	public void setColCmoney(String colCmoney) {
-		this.colCmoney = colCmoney;
-	}
-	public String getColIdentifytype() {
-		return colIdentifytype;
-	}
-	public void setColIdentifytype(String colIdentifytype) {
-		this.colIdentifytype = colIdentifytype;
-	}
-	public String getColIdentifyres() {
-		return colIdentifyres;
-	}
-	public void setColIdentifyres(String colIdentifyres) {
-		this.colIdentifyres = colIdentifyres;
-	}
-	public String getColBdate() {
-		return colBdate;
-	}
-	public void setColBdate(String colBdate) {
-		this.colBdate = colBdate;
-	}
-	public String getColEdate() {
-		return colEdate;
-	}
-	public void setColEdate(String colEdate) {
-		this.colEdate = colEdate;
+	public void setColWcount(String colWcount) {
+		this.colWcount = colWcount;
 	}
 	public long getColUorder() {
 		return colUorder;
@@ -262,11 +224,11 @@ public class TeacherProjectMap {
 	public void setColAuditor3(String colAuditor3) {
 		this.colAuditor3 = colAuditor3;
 	}
-	public String getColDepartment3() {
-		return colDepartment3;
+	public String getColSepartment3() {
+		return colSepartment3;
 	}
-	public void setColDepartment3(String colDepartment3) {
-		this.colDepartment3 = colDepartment3;
+	public void setColSepartment3(String colSepartment3) {
+		this.colSepartment3 = colSepartment3;
 	}
 	public String getColAtime3() {
 		return colAtime3;
@@ -352,26 +314,35 @@ public class TeacherProjectMap {
 	public void setColNote(String colNote) {
 		this.colNote = colNote;
 	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getUserschool() {
+		return userschool;
+	}
+	public void setUserschool(String userschool) {
+		this.userschool = userschool;
+	}
 	@Override
 	public String toString() {
-		return "TeacherProjectMap [colId=" + colId + ", colCode=" + colCode + ", colPnum=" + colPnum + ", colPname="
-				+ colPname + ", colPtype=" + colPtype + ", colPsubtype=" + colPsubtype + ", colMtype=" + colMtype
-				+ ", colContent=" + colContent + ", colPmoney=" + colPmoney + ", colCmoney=" + colCmoney
-				+ ", colIdentifytype=" + colIdentifytype + ", colIdentifyres=" + colIdentifyres + ", colBdate="
-				+ colBdate + ", colEdate=" + colEdate + ", colUorder=" + colUorder + ", colAuthorlist=" + colAuthorlist
+		return "TeacherBook [colId=" + colId + ", colCode=" + colCode + ", colBname=" + colBname + ", colBtype="
+				+ colBtype + ", colIsbn=" + colIsbn + ", colPname=" + colPname + ", colPtype=" + colPtype
+				+ ", colWcount=" + colWcount + ", colUorder=" + colUorder + ", colAuthorlist=" + colAuthorlist
 				+ ", colFactor=" + colFactor + ", colUnitlist=" + colUnitlist + ", colNumber=" + colNumber
 				+ ", colOrder=" + colOrder + ", colXiaoneinumber=" + colXiaoneinumber + ", colXiaoneiorder="
 				+ colXiaoneiorder + ", colDate=" + colDate + ", colTtime=" + colTtime + ", colAuditor1=" + colAuditor1
 				+ ", colDepartment1=" + colDepartment1 + ", colAtime1=" + colAtime1 + ", colStatus1=" + colStatus1
 				+ ", colAtxt1=" + colAtxt1 + ", colAuditor2=" + colAuditor2 + ", colDepartment2=" + colDepartment2
 				+ ", colAtime2=" + colAtime2 + ", colStatus2=" + colStatus2 + ", colAtxt2=" + colAtxt2
-				+ ", colAuditor3=" + colAuditor3 + ", colDepartment3=" + colDepartment3 + ", colAtime3=" + colAtime3
+				+ ", colAuditor3=" + colAuditor3 + ", colSepartment3=" + colSepartment3 + ", colAtime3=" + colAtime3
 				+ ", colStatus3=" + colStatus3 + ", colAtxt3=" + colAtxt3 + ", colCauditor=" + colCauditor
 				+ ", colCdepartment=" + colCdepartment + ", colCatime=" + colCatime + ", colCstatus=" + colCstatus
 				+ ", colCatxt=" + colCatxt + ", colEvidence=" + colEvidence + ", colImageurl=" + colImageurl
 				+ ", colUnitvalue=" + colUnitvalue + ", colValue=" + colValue + ", colMoney=" + colMoney + ", colNote="
-				+ colNote + "]";
+				+ colNote + ", username=" + username + ", userschool=" + userschool + "]";
 	}
-	
 	
 }

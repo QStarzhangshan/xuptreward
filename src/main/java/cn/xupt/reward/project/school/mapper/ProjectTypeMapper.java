@@ -12,5 +12,7 @@ public interface ProjectTypeMapper {
 
 	List<ProjectType> findAllByType(@Param("colType") String colType);
 
+	List<String> findAll();
+
 	
 }
